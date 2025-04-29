@@ -1,0 +1,8 @@
+[Unit]
+Description=WPA2 Lab Capture %i
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/wpa2lab/scripts/wpa2lab.py capture
+Restart=on-failure

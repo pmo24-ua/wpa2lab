@@ -1,0 +1,16 @@
+interfaces:
+  managed: wlan0
+  monitor: wlan0mon
+
+ap:
+  ssid: "WPA2_LAB"
+  passphrase: "Demo12345"
+  channel: 6
+
+paths:
+  pcap: "/home/kali/wpa2lab/dump.pcapng"
+  hash: "/home/kali/wpa2lab/hash.22000"
+  wordlist: "/usr/share/wordlists/rockyou.txt"
+  
+logging:
+  file: "/home/kali/wpa2lab/logs/wpa2lab.log"

@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  wpa2lab:
+    build: .
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/bus/usb:/dev/bus/usb"
+    volumes:
+      - ../:/root/wpa2lab

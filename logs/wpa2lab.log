@@ -1,0 +1,66 @@
+2025-04-22 21:35:51,509 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 21:35:51,718 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 21:36:52,161 INFO Preparando monitor mode sobre wlan0
+2025-04-22 21:36:52,161 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 21:36:52,373 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 21:37:40,732 INFO Preparando monitor mode sobre wlan0
+2025-04-22 21:37:40,732 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 21:37:40,959 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:06:47,009 INFO Preparando monitor mode sobre wlan0
+2025-04-22 22:06:47,010 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:06:47,510 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:07:22,741 INFO Ejecutando: sudo hostapd hostapd/hostapd.conf
+2025-04-22 22:09:23,925 INFO Ejecutando: sudo hostapd hostapd/hostapd.conf
+2025-04-22 22:11:07,795 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:12:00,248 INFO Ejecutando: sudo hcxdumptool -i wlan0mon --enable_status=15 -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:13:36,969 INFO Ejecutando: sudo hcxdumptool -i wlan0mon --enable_status=15 -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:16:12,266 INFO Ejecutando: sudo hcxdumptool -i wlan0mon --enable_status=15 -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:17:04,105 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-22 22:17:07,852 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:17:28,990 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:17:55,196 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-22 22:18:36,449 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:18:40,594 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:19:53,887 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-22 22:19:57,415 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:20:00,036 INFO Reiniciando monitor mode en wlan0
+2025-04-22 22:20:00,036 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:20:00,253 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-22 22:20:00,438 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:20:01,954 INFO Ejecutando: sudo hcxdumptool -i wlan0mon --output-file /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:22:22,689 INFO Preparando monitor mode en wlan0
+2025-04-22 22:22:22,689 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:22:22,902 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:22:33,815 INFO Preparando monitor mode en wlan0
+2025-04-22 22:22:33,815 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:22:34,021 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:27:25,223 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:27:26,451 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:27:26,676 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:27:36,068 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -o /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:32:23,366 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -w /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:34:37,107 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:34:38,355 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:34:38,572 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:35:27,678 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:35:28,954 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:35:29,175 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:35:30,685 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -w /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:37:53,059 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:37:54,302 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:37:54,520 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:37:55,960 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:38:17,847 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:38:18,063 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:38:21,626 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -w /home/kali/wpa2lab/dump.pcapng
+2025-04-22 22:44:05,145 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:44:50,970 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:44:51,188 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-22 22:44:54,149 INFO Ejecutando: sudo airmon-ng stop wlan0mon
+2025-04-22 22:46:30,723 INFO Ejecutando: sudo ip link set wlan0 up
+2025-04-22 22:46:30,929 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:47:41,554 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-22 22:47:44,915 INFO Ejecutando: sudo ip link set wlan0 up
+2025-04-22 22:47:44,931 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-22 22:47:52,611 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-22 22:47:52,850 INFO Ejecutando: sudo airmon-ng start wlan0

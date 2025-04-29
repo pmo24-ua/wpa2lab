@@ -1,0 +1,11 @@
+[Unit]
+Description=WPA2 Lab Full Demo
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /root/wpa2lab/scripts/wpa2lab.py all --bssid AA:BB:CC:DD:EE:FF
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
