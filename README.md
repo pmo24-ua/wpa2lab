@@ -31,7 +31,13 @@ chmod +x wpa2lab.py
 ### 1. Poner la tarjeta en modo monitor
 
 ```bash
-sudo ./wpa2lab.py prepare --iface wlan1
+sudo ./wpa2lab.py prepare --monitor wlan0
+# → “Modo monitor activado en: wlan1mon”
+```
+###  Levantar AP en wlan1
+
+```bash
+sudo ./wpa2lab.py ap --ap wlan1
 # → “Modo monitor activado en: wlan1mon”
 ```
 
