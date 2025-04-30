@@ -1,5 +1,3 @@
-# README
-
 ## Objetivo
 Sin desconectar al cliente, capturar la PMKID que el punto de acceso (AP) 
 envía durante cada asociación y crackearla sin conexión.
