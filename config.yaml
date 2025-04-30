@@ -1,5 +1,5 @@
 interfaces:
-  managed: wlan0
+  managed: wlan1
   monitor: wlan0mon
 
 ap:
