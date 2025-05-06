@@ -4,7 +4,7 @@ interfaces:
 
 ap:
   ssid: "WPA2_LAB"
-  passphrase: "Demo12345"
+  passphrase: "12345678"
   channel: 6
 
 paths:

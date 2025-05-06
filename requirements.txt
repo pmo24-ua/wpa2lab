@@ -1,0 +1,6 @@
+# Paquetes de sistema (aircrack-ng, hcxdumptool, etc.) se instalan vía apt
+typer
+rich
+prompt_toolkit
+scapy
+pyyaml
