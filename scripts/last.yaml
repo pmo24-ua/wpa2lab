@@ -1,0 +1,16 @@
+ap:
+  channel: 6
+  passphrase: Demo12345
+  ssid: WPA2_LAB
+interfaces:
+  managed: wlan1
+  monitor: wlan0mon
+last:
+  bssid: E0:41:36:1D:A1:7E
+  channel: 10
+logging:
+  file: /home/kali/wpa2lab/logs/wpa2lab.log
+paths:
+  hash: /home/kali/wpa2lab/hash.22000
+  pcap: /home/kali/wpa2lab/dump.pcapng
+  wordlist: /usr/share/wordlists/rockyou.txt
