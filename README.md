@@ -45,12 +45,6 @@ Un flujo típico sería 1 → 4 → 5 → 6 → 7.
 
 ## Guía de uso exprés con comandos
 
-### 1. Ayuda 
-```bash
-sudo ./wpa2_lab.py --help
-```
-
-
 ### 1. Poner la tarjeta en modo monitor
 
 ```bash
@@ -97,6 +91,18 @@ Que lanza automáticamente:
 ```bash
 hashcat -m 22000 hash.22000 /usr/share/wordlists/rockyou.txt
 ```
+
+## 5. Ataque de desautenticación (opcional)
+
+Si no hay tráfico y ningún cliente se asocia al AP, puedes forzar una 
+reasociación enviando paquetes de desautenticación:
+
+```bash
+sudo ./wpa2_lab.py deauth
+```
+Esto envía paquetes deauth al objetivo seleccionado, provocando que
+los clientes se desconecten y vuelvan a asociarse, momento en el cual
+el AP volverá a enviar el PMKID (ideal para capturarlo).
 
 ## ¿Cómo funciona el ataque de diccionario?
 Hashcat recorre cada contraseña del fichero elegido (en el ejemplo 
