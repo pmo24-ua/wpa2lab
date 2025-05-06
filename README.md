@@ -53,7 +53,7 @@ sudo ./wpa2_lab.py prepare
 ###  Levantar AP en wlan
 
 ```bash
-sudo ./wpa2_lab.py ap --ap 
+sudo ./wpa2_lab.py ap 
 ```
 
 ### 2. Capturar la PMKID
