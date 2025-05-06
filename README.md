@@ -4,7 +4,7 @@ envía durante cada asociación y crackearla sin conexión.
 
 ## Requisitos
 - Python 3.x  
-- `wpa2lab.py` (este repositorio)  
+- `wpa2_lab.py` (este repositorio)  
 - Adaptador Wi-Fi capaz de modo monitor  
 - Herramientas externas:
   - `hcxdumptool` (incluye `hcxpcaptool`)
@@ -20,31 +20,52 @@ git clone https://github.com/tu-usuario/wpa2lab.git
 cd wpa2lab
 ```
 
-Asegúrate de que `wpa2lab.py` sea ejecutable:
+Asegúrate de que `wpa2_lab.py` sea ejecutable:
 
 ```bash
-chmod +x wpa2lab.py
+chmod +x wpa2_lab.py
+```
+Opcional: crea un venv y activalo antes de instalar requisitos. 
+
+```bash
+source venv/bin/activate 
 ```
 
-## Guía de uso exprés
+## Uso exprés (menú interactivo)
+
+Lanza el menú gráfico:
+
+```bash
+sudo ./wpa2_lab.py
+```
+![Menú principal](docs/img/menu.png)
+
+Un flujo típico sería 1 → 4 → 5 → 6 → 7.
+(Monitor → Scan → Capture → Extract → Crack).
+
+## Guía de uso exprés con comandos
+
+### 1. Ayuda 
+```bash
+sudo ./wpa2_lab.py --help
+```
+
 
 ### 1. Poner la tarjeta en modo monitor
 
 ```bash
-sudo ./wpa2lab.py prepare --monitor wlan0
-# → “Modo monitor activado en: wlan1mon”
+sudo ./wpa2_lab.py prepare 
 ```
-###  Levantar AP en wlan1
+###  Levantar AP en wlan
 
 ```bash
-sudo ./wpa2lab.py ap --ap wlan1
-# → “Modo monitor activado en: wlan1mon”
+sudo ./wpa2_lab.py ap --ap 
 ```
 
 ### 2. Capturar la PMKID
 
 ```bash
-sudo ./wpa2lab.py capture
+sudo ./wpa2_lab.py capture
 # Capturando PMKID en wlan1mon → dump.pcapng
 # (Pulsa Ctrl-C para detener la captura)
 ```
@@ -55,7 +76,7 @@ AP↔cliente y los PMKID correspondientes.
 ### 3. Extraer el hash para Hashcat
 
 ```bash
-sudo ./wpa2lab.py extract
+sudo ./wpa2_lab.py extract
 # Extrae hash → hash.22000
 ```
 
@@ -68,7 +89,7 @@ hcxpcaptool -z hash.22000 dump.pcapng
 ### 4. Crackear sin conexión
 
 ```bash
-sudo ./wpa2lab.py crack
+sudo ./wpa2_lab.py crack
 ```
 
 Que lanza automáticamente:
